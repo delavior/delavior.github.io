@@ -1,0 +1,1314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>On The Way</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://delavior.net/"/>
+  <updated>2017-03-29T10:52:53.649Z</updated>
+  <id>http://delavior.net/</id>
+  
+  <author>
+    <name>delavior</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>oracle索引失效原因</title>
+    <link href="http://delavior.net/2017/03/29/oracle%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E5%8E%9F%E5%9B%A0/"/>
+    <id>http://delavior.net/2017/03/29/oracle索引失效原因/</id>
+    <published>2017-03-29T10:46:20.000Z</published>
+    <updated>2017-03-29T10:52:53.649Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>隐式转换导致索引失效</li>
+<li>对索引列进行运算导致索引失效</li>
+<li>使用函数导致索引失效(应创建基于函数的索引)<pre><code>create index index_name on table_name(func_name(field_name))
+</code></pre></li>
+<li>使用&lt;&gt;、not in、not exists、!=等导致索引失效(B树索引is not null不会走)</li>
+<li>使用like且%在前</li>
+<li>使用复合索引，且未使用索引第一列</li>
+<li>将空变量值直接与比较运算符比较(应使用IS NULL)</li>
+<li>CBO分析使用索引花费较大时，如查询小表或返回数据占全表10%以上</li>
+<li>CBO[^1]依赖统计信息，如果统计信息不正常，会导致查询时不使用索引或使用错误的索引.(如果表数据发生较大的变化，比如超过20%，可能会导致统计信息没有及时变化)</li>
+</ul>
+<p>[^1]:CBO:Cost-Based Optimizer:基于代价的优化器(原使用RBO:Rule-Based Optimizer:基于规则的优化器)</p>
+<hr>
+<h3 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h3><h4 id="B树索引-默认索引"><a href="#B树索引-默认索引" class="headerlink" title="B树索引(默认索引)"></a>B树索引(默认索引)</h4><p>B树索引就是一棵二叉树，叶子节点(双向链表)包含索引列和指向表中每个匹配行的ROWID值；所有叶子节点具有相同的深度，因而不管查询条件怎样，查询速度基本相同；能够适应精确查询、模糊查询和比较查询<br>适用场景:列基数大时</p>
+<h4 id="位图索引"><a href="#位图索引" class="headerlink" title="位图索引"></a>位图索引</h4><p>创建位图索引时会扫描整张表，并为索引列的每个取值建立一个位图（位图中，对表中的每一行使用一位(bit,0或1)来标识该行是否包含该位图的索引列的取值，如果为1，表示对应的ROWID所在的记录包含该位图索引列值），最后通过位图索引中的映射函数完成位到行的ROWID的转换<br>适用场景:列基数小时(如性别)</p>
+<hr>
+<h4 id="创建索引注意事项"><a href="#创建索引注意事项" class="headerlink" title="创建索引注意事项"></a>创建索引注意事项</h4><ul>
+<li>如果有两个以上的索引，其中一个为唯一性索引，oracle将忽略非唯一性索引</li>
+<li>至少包含组合索引的第一列</li>
+<li>小表不建索引</li>
+<li>基数大的列适合建B树索引，基数小的列适合建位图索引</li>
+<li>列中有很多空值，且经常查询此列中的非空数据时应建索引</li>
+<li>经常进行连接查询的列应建索引</li>
+<li>创建索引时将最常查询的列放到最前面</li>
+<li>MYSQL LONG和LONG RAW列不能建索引</li>
+<li>限制表中索引数量(索引会占用物理空间;当对表中数据进行增加、删除、修改的时候，索引也要动态维护，降低效率)</li>
+<li>表中数据经常更新，而查询较少时不应创建索引</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;隐式转换导致索引失效&lt;/li&gt;
+&lt;li&gt;对索引列进行运算导致索引失效&lt;/li&gt;
+&lt;li&gt;使用函数导致索引失效(应创建基于函数的索引)&lt;pre&gt;&lt;code&gt;create index index_name on table_name(func_name(field_
+    
+    </summary>
+    
+      <category term="SQL" scheme="http://delavior.net/categories/SQL/"/>
+    
+    
+      <category term="oracle" scheme="http://delavior.net/tags/oracle/"/>
+    
+      <category term="index" scheme="http://delavior.net/tags/index/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git常用命令</title>
+    <link href="http://delavior.net/2016/06/23/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://delavior.net/2016/06/23/Git常用命令/</id>
+    <published>2016-06-23T09:07:04.000Z</published>
+    <updated>2016-06-23T09:07:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
+<li><p>add</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add &lt;file&gt; -- 将工作文件修改提交到本地暂存区</div><div class="line">git add . -- 将所有修改过的工作文件提交到本地暂存区</div><div class="line">git add -p -- 只添加一个文件的一部分到缓存区</div></pre></td></tr></table></figure>
+</li>
+<li><p>bisect</p>
+</li>
+<li><p>blame</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git blame &lt;file&gt; -- 查看指定文件每一行的提交者和提交时间</div></pre></td></tr></table></figure>
+</li>
+<li><p>branch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git branch &lt;NewBranchName&gt; -- 新建分支</div><div class="line">git branch &lt;NewBranchName&gt; -v &lt;LogHash&gt; -- 根据提交的log号新建branch</div><div class="line">git branch -a -- 查看所有分支</div><div class="line">git branch -d &lt;BranchName&gt; -- 删除分支</div><div class="line">git branch -r -- 查看远程分支</div><div class="line">git branch -v -- 查看每个分支最后一个提交对象的信息</div></pre></td></tr></table></figure>
+</li>
+<li><p>checkout</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git checkout &lt;branchname&gt; -- 切换到分支</div><div class="line">git checkout -b &lt;NewLocalBranch&gt; &lt;OriginBranch&gt; -- 从远程分支导出并切换至新本地分支</div><div class="line">git checkout HEAD~num -- 切换到分支的倒数第二个提交</div><div class="line">git checkout HEAD@&#123;1&#125; -- 回滚到上一次的提交</div><div class="line">git checkout tags/&lt;tag&gt; -- 按标签检出(忽略与标签同名的branch)</div></pre></td></tr></table></figure>
+</li>
+<li><p>cherry-pick</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git cherry-pick &lt;commitId&gt; -- 将某次提交重新再提交</div></pre></td></tr></table></figure>
+</li>
+<li><p>clone</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone &lt;url&gt; -- 从远程仓库克隆一份到本地</div></pre></td></tr></table></figure>
+</li>
+<li><p>commit(-m/-F是必选项,在其它命令中省略)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git commit --amend -- 补提交到上次提交</div><div class="line">git commit -date xxxx.xx.xx -- 修改提交日期到指定日期</div><div class="line">git commit -F &lt;file&gt; -- 从文件中读取说明</div><div class="line">git commit -m &quot;comment&quot; &lt;file&gt; -- 提交文件并添加说明</div></pre></td></tr></table></figure>
+</li>
+<li><p>config</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git config --global &quot;user.name&quot; [name] -- 查看或设置username</div><div class="line">git config --global &quot;user.email&quot; [email] -- 查看或设置email</div><div class="line">git config --list -- 查看所有git config</div></pre></td></tr></table></figure>
+</li>
+<li><p>diff</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git diff -- 查看工作目录里还没有staged且在下次提交时不会被提交的修改</div><div class="line">git diff --cached -- 查看已经staged且下次提交会被提交的修改</div><div class="line">git diff HEAD -- 查看最后一次提交之后工作目录中文件的变更</div><div class="line">git diff HEAD -- &lt;file&gt; -- 查看最后一次提交后某文件的变更</div><div class="line">git diff ...dev -- 查看当前分支和dev分支差异</div><div class="line">git diff master...dev -- 查看master分支和dev分支差异</div></pre></td></tr></table></figure>
+</li>
+<li><p>fetch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git fetch &lt;host&gt; -- 获取远程主机的所有分支更新</div><div class="line">git fetch &lt;host&gt; &lt;branch&gt; -- 获取远程主机指定分支的更新</div></pre></td></tr></table></figure>
+</li>
+<li><p>init</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git init -- 普通初始化,可以在生成的目录下进行git操作</div><div class="line">git init --bare -- 生成裸仓库，在生成目录中只记录git历史提交的版本信息，而不允许用户进行git操作</div></pre></td></tr></table></figure>
+</li>
+<li><p>log</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git log -- 查看提交的hash</div><div class="line">git log --oneline -- 将一次提交的log显示为1行,即只显示hash和comment</div><div class="line">git log --pretty=oneline -- 将一次提交的log显示为1行,即只显示hash和comment</div><div class="line">git log --reverse -p [fileName] -- 查看某文件或全部文件的提交日志</div></pre></td></tr></table></figure>
+</li>
+<li><p>merge</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git merge &lt;BranchName&gt; -- 合并分支到当前分支</div><div class="line">git merge &lt;host&gt;/&lt;branch&gt; -- 远程host的branch与本地分支合并</div><div class="line">git merge --squash &lt;BranchName&gt; -- 从分支合并时保存为一次提交</div></pre></td></tr></table></figure>
+</li>
+<li><p>mv</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git mv &lt;oldname&gt; &lt;newname&gt; -- git重命名</div><div class="line">git mv &lt;files&gt; &lt;folder&gt;/ -- git移动文件到新目录</div></pre></td></tr></table></figure>
+</li>
+<li><p>pull</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git pull -- 如果本地当前分支只有一个远程追踪分支，可省略远程主机名与分支名</div><div class="line">git pull &lt;OriginHost&gt; -- 如果本地当前分支与远程分支存在追踪关系，可以省略远程分支名</div><div class="line">git pull &lt;OriginHost&gt; &lt;OriginBranch&gt; -- 取回远程主机的指定分支与本地当前分支合并</div><div class="line">git pull &lt;OriginHost&gt; &lt;OriginBranch&gt;:&lt;LocalBranch&gt; -- 取回远程主机的指定分支与本地的指定分支合并</div></pre></td></tr></table></figure>
+</li>
+<li><p>push</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">git push &lt;OriginHost&gt; &lt;LocalBranch&gt;:&lt;OriginBranch&gt; -- 提交到远程仓库</div><div class="line">git push &lt;OriginHost&gt; &lt;LocalBranch&gt; -- 提交到远程仓库的同名分支,如果分支不存在则新建</div><div class="line">git push &lt;OriginHost&gt; :&lt;OriginBranch&gt; -- 删除指定的远程分支</div><div class="line">git push &lt;OriginHost&gt; -- 如果本地当前分支与远程分支存在追踪关系,则可省略</div><div class="line">git push -- 如果当前分支只有一个远程追踪分支,可忽略主机名</div><div class="line">git push --all &lt;OriginHost&gt; -- 不管本地分支是否存在对应的远程分支，将本地的所有分支都推送到远程分支</div><div class="line">git push --force &lt;OriginHost&gt; -- 即使远程分支比本地分支新也强制推送</div><div class="line">git push --tags -- push时带上tag,默认push是不带tag的</div></pre></td></tr></table></figure>
+</li>
+<li><p>rebase（-i:交互式操作)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git rebase &lt;OriginBranch&gt; -- 将当前分支的每个提交取消掉，并把它们作为patch放到.git/rebash目录中,然后把当前分支更新到最新的远程分支,最后把patch应用到当前分支上</div><div class="line">git rebase &lt;CommitId&gt; -- 将指定commit取消掉，并把它们作为patch放到.git/rebash目录中,然后把当前分支更新到最新的远程分支,最后把patch应用到当前分支上</div><div class="line">git rebase HEAD~2 -- 从当前到倒数第二个，并把它们作为patch放到.git/rebash目录中,然后把当前分支更新到最新的远程分支,最后把patch应用到当前分支上</div><div class="line">git rebase --abort -- 取消rebase,回到rebase前状态</div><div class="line">git rebase --continue -- 当rebash出现冲突时,需要先解决冲突,当冲突解决后可以使用该命令继续rebase</div></pre></td></tr></table></figure>
+</li>
+<li><p>reflog</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reflog -- 查看操作历史</div></pre></td></tr></table></figure>
+</li>
+<li><p>remote</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git remote -- 查看所有远程分支</div><div class="line">git remote -v -- 查看所有远程分支及其URL</div><div class="line">git remote add &lt;OriginHost&gt; &lt;OriginUrl&gt; -- 给当前本地分支添加远程主机</div></pre></td></tr></table></figure>
+</li>
+<li><p>repack</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git repack -- 压缩</div><div class="line">git repack -d -- 多余文件直接删除</div></pre></td></tr></table></figure>
+</li>
+<li><p>reset(soft:缓存区和工作都不会改变;mixed,默认,缓存区改变;hard,都改变)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git reset HEAD &lt;file&gt; -- 将已经add的文件移出staging area</div><div class="line">git reset HEAD~2 -- 将一个分支的末端指向倒数第二个提交</div></pre></td></tr></table></figure>
+</li>
+<li><p>revert </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git revert HEAD~2 -- 以倒数第二个提交作为新提交添加到分支末端</div></pre></td></tr></table></figure>
+</li>
+<li><p>rm</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git rm &lt;file&gt; -- 从版本库中删除文件 </div><div class="line">git rm --cached &lt;file&gt; -- 将已经add但未提交的文件从缓冲区删除</div></pre></td></tr></table></figure>
+</li>
+<li><p>squash(合并提交,多用于rebase -i操作中)</p>
+</li>
+<li><p>stash</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git stash -- 保存所有文件变更(git status时此变更不会再出现)</div><div class="line">git stash apply --index -- 重新应用被保存的变更</div><div class="line">git stash list -- 查看所有stash文件</div></pre></td></tr></table></figure>
+</li>
+<li><p>status</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status -- 查看已提交的，已add未提交的，未add的文件(untracked/changes not staged for commit/changes to be committed)</div></pre></td></tr></table></figure>
+</li>
+<li><p>submodule</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git submodule add &lt;SubmoduleUrl&gt; -- 添加子项目</div></pre></td></tr></table></figure>
+</li>
+<li><p>tag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git tag -- 查看当前所有标签</div><div class="line">git tag &lt;tagname&gt; -- 打标签</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="gitignore用法"><a href="#gitignore用法" class="headerlink" title="gitignore用法"></a>gitignore用法</h3><ul>
+<li>空行或以#开头的行会被忽略</li>
+<li>可以使用标准glob模式匹配（glob模式即shell使用的简化了的正则表达式）<ul>
+<li>*匹配0或多个字符</li>
+<li>?匹配一个任意字符</li>
+<li>[]中使用-分隔两个字符表示匹配这两个字符范围内的字符</li>
+<li>[]中多个字符表示匹配多字符中的任意一个字符</li>
+</ul>
+</li>
+<li>匹配模式最后跟/说明要忽略的是目录</li>
+<li>要忽略指定模式以外的文件或目录，可以在模式前加!</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;常用命令&quot;&gt;&lt;a href=&quot;#常用命令&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;add&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;t
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://delavior.net/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>对ThreadLocal的理解</title>
+    <link href="http://delavior.net/2016/03/18/%E5%AF%B9ThreadLocal%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+    <id>http://delavior.net/2016/03/18/对ThreadLocal的理解/</id>
+    <published>2016-03-18T09:09:46.000Z</published>
+    <updated>2016-03-18T09:10:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
+<li><p>创建ThreadLocal变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ThreadLocal&lt;String&gt; threadLocalDemo = new ThreadLocal&lt;&gt;();  // 支持范型</div></pre></td></tr></table></figure>
+</li>
+<li><p>get/set</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">threadLocalDemo.set(&quot;test&quot;);</div><div class="line">threadLocalDemo.get();</div></pre></td></tr></table></figure>
+</li>
+<li><p>初始值(为ThreadLocal设置初始值，需要重写initialValue方法)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ThreadLocal&lt;String&gt; threadLocalDemo = new ThreadLocal&lt;&gt;() &#123;</div><div class="line">    @Override</div><div class="line">    protected String initialValue() &#123;</div><div class="line">        return Thread.currentThread().getName();</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用InheritableThreadLocal可以实现多个线程访问ThreadLocal的值</p>
+</li>
+<li><p>是否会导致内存泄露</p>
+<ul>
+<li>结论是不会.</li>
+<li>ThreadLocal被线程的ThreadLocalMap所持有，也可以看成被线程持有，如果使用线程池，之前的线程在处理完之后出于复用的目的依然存活，表面上看ThreadLocal的值仍然被持有，导致内存泄露.但是ThreadLocalMap在做选择key时并不是直接使用ThreadLocal实例，而是使用ThreadLocalMap实例的弱引用.</li>
+</ul>
+</li>
+<li><p>ThreadLocal对象实例存放位置</p>
+<ul>
+<li>Java中栈内存属于单个线程，即每个线程都有一个栈内存，其存储的变量只在所属线程中可见，栈内存可被理解成线程的私有内存。而堆内存中的对象对所有线程可见。</li>
+<li>ThreadLocal实例虽然也是线程独占的，但其是存放于堆上的，只是使用特殊的技巧使其线程可见了</li>
+</ul>
+</li>
+</ul>
+<h4 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h4><ul>
+<li><p>ThreadLocal</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public void testThreadLocal() &#123;</div><div class="line">    Thread t = new Thread() &#123;</div><div class="line">        ThreadLocal&lt;String&gt; threadLocalDemo = new ThreadLocal&lt;&gt;();</div><div class="line">        </div><div class="line">        @Override</div><div class="line">        public void run() &#123;</div><div class="line">            super.run();</div><div class="line">            threadLocalDemo.set(&quot;test&quot;);</div><div class="line">            threadLocalDemo.get();</div><div class="line">        &#125;    </div><div class="line">    &#125;;</div><div class="line">    t.start();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>InheritableThreadLocal</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public void testInheritableThreadLocal() &#123;</div><div class="line">    final ThreadLocal inheritableThreadLocalDemo = new InheritableThreadLocal();</div><div class="line">    inheritableThreadLocalDemo.set(&quot;test&quot;);</div><div class="line">    Thread t = new Thread() &#123;</div><div class="line">        @Override</div><div class="line">        public void run() &#123;</div><div class="line">            super.run();</div><div class="line">            logger.info(&quot;inheritableThreadLocal:&quot; + inheritableThreadLocal.get());</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    t.start();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><ul>
+<li>实现单个线程单例及单个线程上下文信息存储，如交易ID等</li>
+<li>实现线程安全，非线程安全的对象使用ThreadLocal后会变得线程安全，因为每个线程都会有一个对应的实例</li>
+<li>承载一些线程相关的数据，避免在方法中来回传递参数</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;创建ThreadLocal变量&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;t
+    
+    </summary>
+    
+      <category term="Thread" scheme="http://delavior.net/categories/Thread/"/>
+    
+    
+      <category term="java" scheme="http://delavior.net/tags/java/"/>
+    
+      <category term="thread" scheme="http://delavior.net/tags/thread/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>wait与sleep区别</title>
+    <link href="http://delavior.net/2016/02/28/wait%E4%B8%8Esleep%E5%8C%BA%E5%88%AB/"/>
+    <id>http://delavior.net/2016/02/28/wait与sleep区别/</id>
+    <published>2016-02-27T17:04:04.000Z</published>
+    <updated>2016-03-05T03:24:07.999Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li><p>等待时wait会释放锁，sleep则一直持有锁</p>
+</li>
+<li><p>wait通常被用于线程间交互，而sleep通常被用于暂停执行</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;等待时wait会释放锁，sleep则一直持有锁&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;wait通常被用于线程间交互，而sleep通常被用于暂停执行&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+    
+    </summary>
+    
+      <category term="Java" scheme="http://delavior.net/categories/Java/"/>
+    
+    
+      <category term="线程" scheme="http://delavior.net/tags/%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Log4j配置</title>
+    <link href="http://delavior.net/2016/01/30/Log4j%E9%85%8D%E7%BD%AE/"/>
+    <id>http://delavior.net/2016/01/30/Log4j配置/</id>
+    <published>2016-01-30T12:57:48.000Z</published>
+    <updated>2016-03-04T04:33:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Log4j 的配置文件用来设置记录器的<strong>级别</strong>、<strong>输出目的地</strong>和<strong>布局</strong>，可以是 log4j.properties 或 log4j.xml。以下讲解以 log4j.properties 的配置方式进行。</p>
+<h2 id="配置文件的基本格式"><a href="#配置文件的基本格式" class="headerlink" title="配置文件的基本格式"></a>配置文件的基本格式</h2><p>基本格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#配置根 Logger</div><div class="line">log4j.rootLogger = [ level ], appenderName1, appenderName2, ……</div><div class="line">#配置日志信息输出目的地 (Appender)</div><div class="line">log4j.appender.appenderName = fully.qualified.name.of.appender.class </div><div class="line">log4j.appender.appenderName.option1 = value1 </div><div class="line">……</div><div class="line">log4j.appender.appenderName.optionN = valueN </div><div class="line">#配置日志信息的格式 (Layout)</div><div class="line">log4j.appender.appenderName.layout = fully.qualified.name.of.layout.class </div><div class="line">log4j.appender.appenderName.layout.option1 = value1 </div><div class="line">……</div><div class="line">log4j.appender.appenderName.layout.optionN = valueN</div></pre></td></tr></table></figure></p>
+<h2 id="Level"><a href="#Level" class="headerlink" title="Level"></a>Level</h2><p>Level 是日志输出级别，共有5级：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>级别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FATAL</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>3</td>
+</tr>
+<tr>
+<td>WARN</td>
+<td>4</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td>6</td>
+</tr>
+<tr>
+<td>DEBUG</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Appender"><a href="#Appender" class="headerlink" title="Appender"></a>Appender</h2><p>Appender 为日志输出目的地，Log4j 提供的 appender 有以下几种：</p>
+<ul>
+<li>org.apache.log4j.ConsoleAppender（控制台）</li>
+<li>org.apache.log4j.FileAppender（文件）</li>
+<li>org.apache.log4j.DailyRollingFileAppender（每天产生一个日志文件）</li>
+<li>org.apache.log4j.RollingFileAppender（文件大小到达指定尺寸的时候产生一个新的文件）</li>
+<li>org.apache.log4j.WriterAppender（将日志信息以流格式发送到任意指定的地方）<h3 id="ConsoleAppender-可配置项"><a href="#ConsoleAppender-可配置项" class="headerlink" title="ConsoleAppender 可配置项"></a>ConsoleAppender 可配置项</h3></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Threshold=DEBUG</td>
+<td>指定日志消息的输出最低层次</td>
+</tr>
+<tr>
+<td>ImmediateFlush=true</td>
+<td>默认值是 true，意味着所有的消息都会被立即输出</td>
+</tr>
+<tr>
+<td>Target=System.err</td>
+<td>默认情况下是 System.out，指定输出控制台</td>
+</tr>
+</tbody>
+</table>
+<h3 id="FileAppender-可配置项"><a href="#FileAppender-可配置项" class="headerlink" title="FileAppender 可配置项"></a>FileAppender 可配置项</h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Threshold=DEBUF</td>
+<td>指定日志消息的输出最低层次</td>
+</tr>
+<tr>
+<td>ImmediateFlush=true</td>
+<td>默认值是 true，意味着所有的消息都会被立即输出</td>
+</tr>
+<tr>
+<td>File=mylog.txt</td>
+<td>指定消息输出到 mylog.txt 文件</td>
+</tr>
+<tr>
+<td>Append=false</td>
+<td>默认值是true,即将消息增加到指定文件中，false指将消息覆盖指定的文件内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="RollingFileAppender-可配置项"><a href="#RollingFileAppender-可配置项" class="headerlink" title="RollingFileAppender 可配置项"></a>RollingFileAppender 可配置项</h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Threshold=DEBUG</td>
+<td>指定日志消息的输出最低层次。</td>
+</tr>
+<tr>
+<td>ImmediateFlush=true</td>
+<td>默认值是true,意味着所有的消息都会被立即输出。</td>
+</tr>
+<tr>
+<td>File=mylog.txt</td>
+<td>指定消息输出到mylog.txt文件。</td>
+</tr>
+<tr>
+<td>Append=false</td>
+<td>默认值是true即将消息增加到指定文件中，false指将消息覆盖指定的文件内容。</td>
+</tr>
+<tr>
+<td>MaxFileSize=100KB</td>
+<td>后缀可以是KB, MB 或者是 GB.</td>
+<td>在日志文件到达该大小时，将会自动滚动，即将原来的内容移到mylog.log.1文件。</td>
+</tr>
+<tr>
+<td>MaxBackupIndex=2</td>
+<td>指定可以产生的滚动文件的最大数。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h2><p>Layout 为日志输出格式，Log4j 提供的 layout 有以下几种：</p>
+<ul>
+<li>org.apache.log4j.HTMLLayout（以HTML表格形式布局），</li>
+<li>org.apache.log4j.PatternLayout（可以灵活地指定布局模式），</li>
+<li>org.apache.log4j.SimpleLayout（包含日志信息的级别和信息字符串），</li>
+<li><p>org.apache.log4j.TTCCLayout（包含日志产生的时间、线程、类别等等信息）</p>
+<h3 id="Layout-示例"><a href="#Layout-示例" class="headerlink" title="Layout 示例"></a>Layout 示例</h3><p>  log4j.appender.A1.layout.ConversionPattern=%-4r %-5p %d{yyyy-MM-dd HH:mm:ssS} %c %m%n</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>信息输出时左对齐</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>输出日志信息优先级，即DEBUG，INFO，WARN，ERROR，FATAL</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d{yyy MMM dd HH:mm:ss,SSS}，输出类似：2002年10月18日 22:10:28,921</td>
+</tr>
+<tr>
+<td>%r</td>
+<td>输出自应用启动到输出该log信息耗费的毫秒数</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>输出日志信息所属的类，通常就是所在类的全名</td>
+</tr>
+<tr>
+<td>%t</td>
+<td>输出产生该日志事件的线程名</td>
+</tr>
+<tr>
+<td>%l</td>
+<td>输出日志事件的发生位置，相当于%C.%M(%F:%L)的组合,包括类目名、发生的线程，以及在代码中的行数。举例：Testlog4.main (TestLog4.java:10)</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>输出和当前线程相关联的NDC(嵌套诊断环境),尤其用到像java servlets这样的多客户多线程的应用中。</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>输出一个”%”字符</td>
+</tr>
+<tr>
+<td>%F</td>
+<td>输出日志消息产生时所在的文件名称</td>
+</tr>
+<tr>
+<td>%L</td>
+<td>输出代码中的行号</td>
+</tr>
+<tr>
+<td>%m</td>
+<td>输出代码中指定的消息,产生的日志具体信息</td>
+</tr>
+<tr>
+<td>%n</td>
+<td>输出一个回车换行符，Windows平台为”\r\n”，Unix平台为”\n”</td>
+</tr>
+</tbody>
+</table>
+<h3 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h3><p>可以在%与模式字符之间加上修饰符来控制其最小宽度、最大宽度和文本的对齐方式，如：</p>
+<table>
+<thead>
+<tr>
+<th>示例</th>
+<th>表示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%20c</td>
+<td>指定输出category的名称，最小的宽度是20，如果category的名称小于20的话，默认的情况下右对齐。</td>
+</tr>
+<tr>
+<td>%-20c</td>
+<td>指定输出category的名称，最小的宽度是20，如果category的名称小于20的话，”-“号指定左对齐。</td>
+</tr>
+<tr>
+<td>%.30c</td>
+<td>指定输出category的名称，最大的宽度是30，如果category的名称大于30的话，就会将左边多出的字</td>
+<td>符截掉，但小于30的话也不会有空格。</td>
+</tr>
+<tr>
+<td>%20.30c</td>
+<td>如果category的名称小于20就补空格，并且右对齐，如果其名称长于30字符，就从左边较远输出的字符截掉。</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Log4j 的配置文件用来设置记录器的&lt;strong&gt;级别&lt;/strong&gt;、&lt;strong&gt;输出目的地&lt;/strong&gt;和&lt;strong&gt;布局&lt;/strong&gt;，可以是 log4j.properties 或 log4j.xml。以下讲解以 log4j.properties
+    
+    </summary>
+    
+      <category term="Apache" scheme="http://delavior.net/categories/Apache/"/>
+    
+    
+      <category term="log4j" scheme="http://delavior.net/tags/log4j/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mybatis批量操作</title>
+    <link href="http://delavior.net/2016/01/26/Mybatis%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C/"/>
+    <id>http://delavior.net/2016/01/26/Mybatis批量操作/</id>
+    <published>2016-01-25T18:44:44.000Z</published>
+    <updated>2016-03-05T03:44:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li>批量插入数据</li>
+</ol>
+<p>eg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;insert id=&quot;&quot; parameterType=&quot;&quot; resultType=&quot;&quot;&gt;</div><div class="line"></div><div class="line">insert into table_name values</div><div class="line"></div><div class="line">&lt;foreach collection=&quot;list&quot; item=&quot;itemName&quot; index=&quot;index&quot; separator=&quot;,&quot;&gt;</div><div class="line"></div><div class="line">(#&#123;itemName.xxx&#125;,#&#123;itemName&#125;.xxx,...)</div><div class="line"></div><div class="line">&lt;/foreach&gt;</div><div class="line"></div><div class="line">&lt;/insert&gt;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>批量更新数据</li>
+</ol>
+<p>eg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;update id=&quot;&quot; parameterType=&quot;&quot; resultType=&quot;&quot;&gt;</div><div class="line"></div><div class="line">update table_name </div><div class="line"></div><div class="line">&lt;trim prefix=&quot; log =case&quot; suffix=&quot;end,&quot;&gt;</div><div class="line"></div><div class="line">&lt;foreach collection=&quot;list&quot; item=&quot;itemName&quot; index=&quot;index&quot; separator=&quot;,&quot;&gt;</div><div class="line"></div><div class="line">&lt;if test=&quot;itemName.xxx!=null&quot;&gt;</div><div class="line"></div><div class="line">when id=#&#123;itemName.id&#125; then #&#123;itemName.xxx&#125;</div><div class="line"></div><div class="line">&lt;/if&gt;</div><div class="line"></div><div class="line">&lt;/foreach&gt;</div><div class="line"></div><div class="line">&lt;/trim&gt;</div><div class="line"></div><div class="line">&lt;/upate&gt;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>批量删除数据</li>
+</ol>
+<p>eg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;delete id=&quot;&quot; parameterType=&quot;&quot;&gt;</div><div class="line"></div><div class="line">delete from table_name where id in </div><div class="line"></div><div class="line">&lt;foreach collection=&quot;list&quot; item=&quot;itemName&quot; separator=&quot;,&quot; index=&quot;index&quot;&gt;</div><div class="line"></div><div class="line">(#&#123;itemName.xxx&#125;)</div><div class="line"></div><div class="line">&lt;/foreach&gt;</div><div class="line"></div><div class="line">&lt;/delete&gt;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;批量插入数据&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;eg:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=
+    
+    </summary>
+    
+      <category term="Mybatis" scheme="http://delavior.net/categories/Mybatis/"/>
+    
+    
+      <category term="mybatis" scheme="http://delavior.net/tags/mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>本地代码与托管代码</title>
+    <link href="http://delavior.net/2015/11/27/%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E4%B8%8E%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81/"/>
+    <id>http://delavior.net/2015/11/27/本地代码与托管代码/</id>
+    <published>2015-11-27T03:48:42.000Z</published>
+    <updated>2016-03-02T13:39:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本地代码与CPU直接相关，由于不同的硬件结构和操作系统，不同的CPU所能执行的本地代码是不同的。也叫本机代码或native代码。C、C++写的代码即为本地代码。<br>Java与C#则采用了虚拟机的机制，屏蔽了底层硬件和操作系统的不同，写的代码经编译后生成了一种中间语言代码，如java的class字节码。这种中间语言代码不能被CPU直接执行，由虚拟机负责解释，并将其转换为本地代码。这种中间语言代码即为托管代码。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本地代码与CPU直接相关，由于不同的硬件结构和操作系统，不同的CPU所能执行的本地代码是不同的。也叫本机代码或native代码。C、C++写的代码即为本地代码。&lt;br&gt;Java与C#则采用了虚拟机的机制，屏蔽了底层硬件和操作系统的不同，写的代码经编译后生成了一种中间语言代码
+    
+    </summary>
+    
+      <category term="Other" scheme="http://delavior.net/categories/Other/"/>
+    
+    
+      <category term="other" scheme="http://delavior.net/tags/other/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mybatis学习笔记</title>
+    <link href="http://delavior.net/2015/11/13/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://delavior.net/2015/11/13/Mybatis学习笔记/</id>
+    <published>2015-11-12T20:49:34.000Z</published>
+    <updated>2016-03-05T03:26:34.999Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="SqlSessionFactoryBuilder"><a href="#SqlSessionFactoryBuilder" class="headerlink" title="SqlSessionFactoryBuilder"></a>SqlSessionFactoryBuilder</h1><p>这个类可以被实例化、使用和丢弃，一旦创建了SqlSessionFactory，就不再需要它了</p>
+<h1 id="SqlSessionFactory"><a href="#SqlSessionFactory" class="headerlink" title="SqlSessionFactory"></a>SqlSessionFactory</h1><ul>
+<li>SqlSessionFactory可以通过sqlSessionFactoryBuilder获得</li>
+<li>SqlSessionFactory一旦被创建就应该在应用的运行期间一直存在，没有理由对它进行清除或重建.最佳范围是应用范围，可以使用单例模式或静态单例模式<h1 id="SqlSession"><a href="#SqlSession" class="headerlink" title="SqlSession"></a>SqlSession</h1></li>
+<li>SqlSession的实例不是线程安全的，因此是不能共享的，所以它的最佳范围是方法或请求.绝对不能将SqlSession实例的引用放在一个类的静态域，甚至一个类的实例变量也不行。也绝不能将SqlSession实例的引用放在任何类型的管理范围中，比如Servlet架构的HttpSession.每次收到Http请求就打开一个sqlSession，返回响应就关闭它.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">SqlSession sqlSession = sqlSessionFactory.openSession();</div><div class="line">try &#123;</div><div class="line">    // do something</div><div class="line">&#125; finally &#123;</div><div class="line">    sqlSession.close();</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;SqlSessionFactoryBuilder&quot;&gt;&lt;a href=&quot;#SqlSessionFactoryBuilder&quot; class=&quot;headerlink&quot; title=&quot;SqlSessionFactoryBuilder&quot;&gt;&lt;/a&gt;SqlSessionFact
+    
+    </summary>
+    
+      <category term="Mybatis" scheme="http://delavior.net/categories/Mybatis/"/>
+    
+    
+      <category term="mybatis" scheme="http://delavior.net/tags/mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hibernate缓存</title>
+    <link href="http://delavior.net/2015/11/06/Hibernate%E7%BC%93%E5%AD%98/"/>
+    <id>http://delavior.net/2015/11/06/Hibernate缓存/</id>
+    <published>2015-11-05T23:48:37.000Z</published>
+    <updated>2016-03-04T02:13:16.999Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hibernate鼓励使用配置对象缓存，不使用集合缓存</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Hibernate鼓励使用配置对象缓存，不使用集合缓存&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="Hibernate" scheme="http://delavior.net/categories/Hibernate/"/>
+    
+    
+      <category term="hibernate" scheme="http://delavior.net/tags/hibernate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ASCII码表</title>
+    <link href="http://delavior.net/2015/10/18/ASCII%E7%A0%81%E8%A1%A8/"/>
+    <id>http://delavior.net/2015/10/18/ASCII码表/</id>
+    <published>2015-10-17T21:28:12.000Z</published>
+    <updated>2016-03-02T13:36:47.999Z</updated>
+    
+    <content type="html"><![CDATA[<p>36:$<br>45:-<br>46:.<br>47:/<br>48:0<br>58::<br>65:A<br>94:^<br>95:_<br>97:a</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;36:$&lt;br&gt;45:-&lt;br&gt;46:.&lt;br&gt;47:/&lt;br&gt;48:0&lt;br&gt;58::&lt;br&gt;65:A&lt;br&gt;94:^&lt;br&gt;95:_&lt;br&gt;97:a&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="Basic" scheme="http://delavior.net/categories/Basic/"/>
+    
+    
+      <category term="ascii" scheme="http://delavior.net/tags/ascii/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hibernate延迟加载</title>
+    <link href="http://delavior.net/2015/10/06/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/"/>
+    <id>http://delavior.net/2015/10/06/Hibernate延迟加载/</id>
+    <published>2015-10-05T22:11:23.000Z</published>
+    <updated>2016-03-04T01:13:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hibernate2延迟加载实现：a)实体对象b)集合</p>
+<p>Hibernate3提供了属性的延迟加载功能</p>
+<p>Hibernate使用Java反射机制而不是字节码增强程序来实现透明性</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Hibernate2延迟加载实现：a)实体对象b)集合&lt;/p&gt;
+&lt;p&gt;Hibernate3提供了属性的延迟加载功能&lt;/p&gt;
+&lt;p&gt;Hibernate使用Java反射机制而不是字节码增强程序来实现透明性&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="Hibernate" scheme="http://delavior.net/categories/Hibernate/"/>
+    
+    
+      <category term="hibernate" scheme="http://delavior.net/tags/hibernate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx学习笔记</title>
+    <link href="http://delavior.net/2015/08/22/Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://delavior.net/2015/08/22/Nginx学习笔记/</id>
+    <published>2015-08-22T05:52:24.000Z</published>
+    <updated>2016-03-05T03:42:16.999Z</updated>
+    
+    <content type="html"><![CDATA[<p>nginx启动后，以daemon方式在后台运行，后台进程包含一个master和多个worker进程。可以手动关掉后台模式，让nginx在前台运行；可以通过通过使nginx以单进程方式运行</p>
+<p>nginx默认且主流的方式为多进程，也支持多线程的方式</p>
+<ul>
+<li><p>master进程主要用来管理worker进程，接收来自外界的信号，向各worker进程发送信号，监听worker进程的运行状态；当worker进程异常退出后会自动重新启动新的worker进程.要操作nginx只要与master通信即可      </p>
+</li>
+<li><p>基本网络事件则放在worker进程中处理。多个worker进程之间是对等的，它们同等竞争来自客户端的请求；worker进程个数可设置，一般设置与机器cpu核数一致(与nginx进程模型与事件处理模型有关)</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;nginx启动后，以daemon方式在后台运行，后台进程包含一个master和多个worker进程。可以手动关掉后台模式，让nginx在前台运行；可以通过通过使nginx以单进程方式运行&lt;/p&gt;
+&lt;p&gt;nginx默认且主流的方式为多进程，也支持多线程的方式&lt;/p&gt;
+&lt;ul&gt;
+    
+    </summary>
+    
+      <category term="Nginx" scheme="http://delavior.net/categories/Nginx/"/>
+    
+    
+      <category term="nginx" scheme="http://delavior.net/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows服务相关</title>
+    <link href="http://delavior.net/2015/08/12/Windows%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/"/>
+    <id>http://delavior.net/2015/08/12/Windows服务相关/</id>
+    <published>2015-08-12T09:04:55.000Z</published>
+    <updated>2016-03-02T13:41:29.999Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>服务名多于一个单词时，使用双引号包含</li>
+<li>开启服务:net start <service></service></li>
+<li>关闭服务:net stop <service></service></li>
+<li>配置服务自启:sc config <service> start=auto(auto/manual/disabled)</service></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;服务名多于一个单词时，使用双引号包含&lt;/li&gt;
+&lt;li&gt;开启服务:net start &lt;service&gt;&lt;/service&gt;&lt;/li&gt;
+&lt;li&gt;关闭服务:net stop &lt;service&gt;&lt;/service&gt;&lt;/li&gt;
+&lt;li&gt;配置服务自启:sc config
+    
+    </summary>
+    
+      <category term="Windows" scheme="http://delavior.net/categories/Windows/"/>
+    
+    
+      <category term="windows" scheme="http://delavior.net/tags/windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux修改主机名</title>
+    <link href="http://delavior.net/2015/08/02/Linux%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%9C%BA%E5%90%8D/"/>
+    <id>http://delavior.net/2015/08/02/Linux修改主机名/</id>
+    <published>2015-08-02T06:56:41.000Z</published>
+    <updated>2016-03-03T14:24:56.999Z</updated>
+    
+    <content type="html"><![CDATA[<p>修改HOST有如下几种方式:</p>
+<ul>
+<li>hostname xxx   – 立即生效，重启后失效</li>
+<li>sysctl kernel.hostname=xxx  – 立即生产，重启后失效</li>
+<li>echo xxx &gt; /proc/sys/kernel/hostname  – 立即生效，重启后失效(archlinux下使用root报权限不足)</li>
+<li>修改/etc/sysconfig/network下的hostname变量  – 重启后生效(archlinux不适用)</li>
+<li>archlinux可以直接修改/etc/hostname  – 重启后生效</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;修改HOST有如下几种方式:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hostname xxx   – 立即生效，重启后失效&lt;/li&gt;
+&lt;li&gt;sysctl kernel.hostname=xxx  – 立即生产，重启后失效&lt;/li&gt;
+&lt;li&gt;echo xxx &amp;gt; /proc/sy
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://delavior.net/categories/Linux/"/>
+    
+    
+      <category term="linux" scheme="http://delavior.net/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux常用命令</title>
+    <link href="http://delavior.net/2015/07/30/Linux%E5%91%BD%E4%BB%A4/"/>
+    <id>http://delavior.net/2015/07/30/Linux命令/</id>
+    <published>2015-07-30T08:39:03.000Z</published>
+    <updated>2016-05-08T02:42:07.999Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>awk:强大复杂的文本分析工具(见附注)</li>
+<li>bzip2:bz2文件压缩解压工具<ul>
+<li>-d:解压</li>
+</ul>
+</li>
+<li>cat:查看文件<ul>
+<li>cat /dev/null &gt; xxx:清空文件内容</li>
+</ul>
+</li>
+<li>cd:转移路径</li>
+<li>cp:复制文件(cp patha pathb)<ul>
+<li>-f:如果目标文件无法打开则将其移除并重试(无提示)</li>
+<li>-R/-r:递归复制目录及其子目录</li>
+</ul>
+</li>
+<li>df:查看文件系统的大小<ul>
+<li>-h:以容易理解的格式列出文件大小</li>
+<li>-l:列出文件的详细信息</li>
+</ul>
+</li>
+<li>du:显示文件或目录的磁盘占用量,格式为du [option] 目录或文件(默认为当前目录) [附加命令]<ul>
+<li>–max-depth=N(如果N为0,则统计当前目录总大小;如果N为1,则统计当前目录及其直接子目录的大小;依次类推)</li>
+<li>-h:以容易理解的格式列出文件大小</li>
+<li>-l:列出文件的详细信息</li>
+</ul>
+</li>
+<li>find:格式为find [OPTION] path [expression]<ul>
+<li>find path -name xxx:在path下查找匹配xxx的文件(默认当前目录)</li>
+<li>-name:按名字查找</li>
+<li>-type:按类型查找 <ul>
+<li>-d:文件类型为目录</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>grep:文本搜索工具,如果搜索来源为文件则源置后,否则源置前<ul>
+<li>-P:使用正则表达式</li>
+<li>-i:忽略大小写</li>
+</ul>
+</li>
+<li>head:显示前几行<ul>
+<li>-n:显示前n行</li>
+</ul>
+</li>
+<li>iptables:防火墙相关<ul>
+<li>–dport:目的端口 </li>
+<li>–sport:源端口</li>
+<li>-A:追加新规则(INPUT/OUTPUT)    </li>
+<li>-L:显示所有规则</li>
+<li>-d:目的地址</li>
+<li>-i:输入接口</li>
+<li>-j:执行目标(ACCEPT/DROP/QUEUE/RETURN)</li>
+<li>-o:输出接口</li>
+<li>-p:指定协议</li>
+<li>-s:源地址</li>
+</ul>
+</li>
+<li>jar<ul>
+<li>-c:创建新jar包</li>
+<li>-f:指定jar文件名</li>
+<li>-M:不生成清单文件,此命令会忽略-m参数</li>
+<li>-m:指定manifest清单文件</li>
+<li>-u:更新存在的jar文件</li>
+<li>-v:生成详细报告并打印到标准输出</li>
+<li>-x:展开jar文件包中的指定文件或所有文件  </li>
+</ul>
+</li>
+<li>last:查看用户登录、注销和重启终端的记录</li>
+<li>ln:格式为ln [option] 原文件 要生成的链接<ul>
+<li>-s:创建符号链接而非硬链接 </li>
+</ul>
+</li>
+<li>ls:显示当前路径下的文件和目录<ul>
+<li>-A:列出除.及..以外的任何项目</li>
+<li>-a:列出目录下所有文件,包括以.开头的隐含文件</li>
+<li>-h:以容易理解的格式列出文件大小</li>
+<li>-k:以K为单位列出文件大小</li>
+<li>-l:列出文件的详细信息(部分系统可以简写为ll)</li>
+</ul>
+</li>
+<li>lsb_release:查看当前发行版<ul>
+<li>-a:查看发行版版本的所有信息</li>
+</ul>
+</li>
+<li>make:编译<ul>
+<li>make install &amp;&gt; xxx:将安装信息存入日志文件</li>
+<li>make install:安装</li>
+</ul>
+</li>
+<li>mv:移动文件及单文件重命名(mv patha/filea pathb/fileb:如果filea与fileb文件名不同,则重命名 )<ul>
+<li>-f:覆盖前不询问</li>
+<li>-v:显示详细信息</li>
+</ul>
+</li>
+<li>netstat:查看端口状态<ul>
+<li>-a:查看全部状态的端口(监听和非监听)</li>
+<li>-e:查看所有附加信息</li>
+<li>-l:只显示监听状态的端口</li>
+<li>-n:使用数字而不是主机名/域名显示连接的主机(IP + 端口)</li>
+<li>-p:查看使用当前端口的程序的PID和名称</li>
+<li>-t:仅显示tcp相关</li>
+</ul>
+</li>
+<li>pwd:显示当前路径</li>
+<li>rm:<ul>
+<li>-f:删除前不询问</li>
+<li>-r:递归删除目录及其子目录</li>
+</ul>
+</li>
+<li>sort:按字母排序(注意:被分隔的重复行不计入重复行)<ul>
+<li>-k:指定间隔符(默认为空格) </li>
+<li>-n:按数字排序</li>
+<li>-r:反序</li>
+<li>-t:指定按第几列排序</li>
+</ul>
+</li>
+<li>tail:查看文件最后10行<ul>
+<li>-c:指定输出字节数</li>
+<li>-f:随文件变化而变化</li>
+<li>-n:指定输出行数(可省略n,eg:tail -10 = tail -n 10)</li>
+<li>–pid:指定进程号，在进程死掉后输出结束</li>
+<li>-q:不显示处理详情</li>
+<li>-s:指定休眠间隔(单位为秒)</li>
+<li>-v:显示详情</li>
+</ul>
+</li>
+<li>tar<ul>
+<li>-c:创建新压缩文件</li>
+<li>-f:使用归档文件,后须直接连接待解压文件</li>
+<li>-v:详细列出处理文件</li>
+<li>-x:解压文件</li>
+<li>-z:使用gzip格式(压缩或解压)</li>
+</ul>
+</li>
+<li>tr:字符或字符串替换–tr source dst<ul>
+<li>-s:删除多个连续字符或字符串,只保留一个–tr -s ‘ ‘ ‘\n’</li>
+</ul>
+</li>
+<li>uname:查看当前系统<ul>
+<li>-a:linux系统的详细信息号</li>
+<li>-m:查看CPU型号</li>
+</ul>
+</li>
+<li>uniq:报告或删除文件中的重复行<ul>
+<li>-c:在输出行前面加上每行在文件中出现的次数</li>
+<li>-d:只显示重复行</li>
+</ul>
+</li>
+<li>unzip<ul>
+<li>-l:查看zip文件内容而不解压</li>
+<li>-t:验证zip文件完整性</li>
+<li>-v:查看zip文件详细信息(不解压)</li>
+</ul>
+</li>
+<li>wc<ul>
+<li>-c:统计字节数</li>
+<li>-l:统计行数</li>
+<li>-w:统计字数</li>
+</ul>
+</li>
+<li>zip:格式为zip [option] 压缩文件名 待压缩文件路径(如为多个以空格分隔)<ul>
+<li>-r:递归压缩目录及其内的子目录</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>awk:</li>
+<li>简单示例:<ul>
+<li>awk ‘{print $1,$4}’ file.txt</li>
+<li>单引号中被大括号包着的即为awk的语句</li>
+<li>\$0表示整行</li>
+<li>$n表示第n列</li>
+</ul>
+</li>
+<li>格式化示例:<blockquote>
+<p>awk ‘{printf “%-8s %2s\n”,$2,$6}’ file.txt</p>
+<ul>
+<li>格式化输出与C语言相同</li>
+<li>s表示字符串</li>
+<li>-8表示从左边算起每列长度一共为8</li>
+</ul>
+</blockquote>
+</li>
+<li>过滤示例:<blockquote>
+<p>awk ‘$3==0 &amp;&amp; $5==”tcp”‘ file.txt</p>
+<ul>
+<li>可以使用的比较运算符有==、&gt;=、&lt;=、&gt;、&lt;、!=</li>
+</ul>
+</blockquote>
+</li>
+<li>指定分隔符示例:<blockquote>
+<p>awk -F OFS=”\t” ‘{print $1,$3,$6}’ file.txt</p>
+</blockquote>
+</li>
+<li>模式匹配示例:<blockquote>
+<p>awk ‘/LISTEN/‘ file.txt<br>awk ‘$6 ~ /FIN|TIME/ || NR==1 {print NR,$4,$5,$6}’ OFS=”\t” file.txt</p>
+<ul>
+<li>‘/ /‘内即为需要匹配的字符串</li>
+<li>~为匹配,!~为不匹配</li>
+</ul>
+</blockquote>
+</li>
+<li>内建变量<ul>
+<li>FS:输入字段分隔符,默认为空格或Tab</li>
+<li>NF:列数</li>
+<li>NR:行数</li>
+<li>RS:输入记录分隔符,默认为换行符</li>
+<li>OFS:输出字段分隔符,默认为空格或Tab</li>
+<li>ORS:输出记录分隔符,默认为换行符</li>
+<li>FILENAME:当前输入文件的名字     </li>
+</ul>
+</li>
+<li>参数<ul>
+<li>-F:指定域分隔符,如果不指定,默认为空格</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;awk:强大复杂的文本分析工具(见附注)&lt;/li&gt;
+&lt;li&gt;bzip2:bz2文件压缩解压工具&lt;ul&gt;
+&lt;li&gt;-d:解压&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;cat:查看文件&lt;ul&gt;
+&lt;li&gt;cat /dev/null &amp;gt; xxx:清空文件内容&lt;/
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://delavior.net/categories/Linux/"/>
+    
+    
+      <category term="linux" scheme="http://delavior.net/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java引用</title>
+    <link href="http://delavior.net/2015/07/30/Java%E5%BC%95%E7%94%A8/"/>
+    <id>http://delavior.net/2015/07/30/Java引用/</id>
+    <published>2015-07-30T08:39:03.000Z</published>
+    <updated>2016-03-05T03:26:21.999Z</updated>
+    
+    <content type="html"><![CDATA[<p>JVM GC对于不同类型的引用有不同的处理方式</p>
+<h4 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h4><ul>
+<li>如果一个对象有强引用,即使内存空间不足,JVM也不会回收该对象,而是会抛出OutOfMemoryError,使程序异常中止</li>
+</ul>
+<h4 id="软引用-SoftReference"><a href="#软引用-SoftReference" class="headerlink" title="软引用(SoftReference)"></a>软引用(SoftReference)</h4><ul>
+<li><p>如果一个对象只有软引用,那么垃圾回收器在内存空间充足的情况下不会回收该对象,但内存空间不足时则自动回收该对象</p>
+</li>
+<li><p>软引用可用来实现内存敏感的高速缓存</p>
+</li>
+<li><p>软引用可以和一个引用队列联合引用,如果软引用所引用的对象被垃圾回收,JVM就会把这个软引用加入到与之关联的引用队列中</p>
+</li>
+</ul>
+<h4 id="弱引用-WeakReference"><a href="#弱引用-WeakReference" class="headerlink" title="弱引用(WeakReference)"></a>弱引用(WeakReference)</h4><ul>
+<li><p>与软引用相比,弱引用具有更短的生命周期;垃圾回收器扫描的过程中,一旦发现了只具有弱引用的对象,不管当前空间是否足够都会回收它的内存;不过,垃圾回收器线程优先级很低,不一定会很快发现那些只有弱引用的对象</p>
+</li>
+<li><p>弱引用可以与一个引用队列联合使用,如果弱引用所引用的对象被垃圾回收,JVM就会把这个弱引用加入到与之关联的引用队列中</p>
+</li>
+<li><p>最常用在集合类中,尤其是哈希表中.哈希表的接口允许使用任何java对象作为键来使用,当一个键值对被放入哈希表中之后,哈希表对象本身就有了对这些键和值对象的引用.如果这些引用是强引用的话,那么只要哈希表对象本身还存活,其中所包含的键和值对象就不会被回收.如果某个存活时间很长的哈希表中包含的键值对很多,最终就有可能消耗掉JVM中的全部内存;对于这种情况的解决办法就是使用弱引用来引用这些对象,这样哈希表中的键和值对象都能被垃圾回收.Java中提供了WeakHashMap来满足这一需求</p>
+</li>
+</ul>
+<h4 id="虚引用-PhantomReference"><a href="#虚引用-PhantomReference" class="headerlink" title="虚引用(PhantomReference)"></a>虚引用(PhantomReference)</h4><ul>
+<li><p>虚引用并不会决定对象的生命周期,如果一个对象仅有虚引用,那么它就和没有任何引用一样,在任何时候都可能被垃圾回收</p>
+</li>
+<li><p>虚引用主要用来跟踪对象被垃圾回收的活动</p>
+</li>
+<li><p>虚引用必须和引用队列联合使用,当一个对象的finalize()方法被调用之后,JVM就会把这个虚引用加入到与之关联的引用队列中.程序可以通过判断引用队列中是否已经加入了虚引用来了解被引用的对象是否将要被垃圾回收.</p>
+</li>
+<li><p>主要用来实现比较精细的内存使用控制,程序可以在确定一个对象被回收之后,再申请内存创建新的对象,通过这种方式可以使得程序所消耗的内存维持在一个相对较低的数量. </p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;JVM GC对于不同类型的引用有不同的处理方式&lt;/p&gt;
+&lt;h4 id=&quot;强引用&quot;&gt;&lt;a href=&quot;#强引用&quot; class=&quot;headerlink&quot; title=&quot;强引用&quot;&gt;&lt;/a&gt;强引用&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;如果一个对象有强引用,即使内存空间不足,JVM也不会回收该
+    
+    </summary>
+    
+      <category term="Java" scheme="http://delavior.net/categories/Java/"/>
+    
+    
+      <category term="java" scheme="http://delavior.net/tags/java/"/>
+    
+      <category term="reference" scheme="http://delavior.net/tags/reference/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Batch相关</title>
+    <link href="http://delavior.net/2015/07/16/Batch%E7%9B%B8%E5%85%B3/"/>
+    <id>http://delavior.net/2015/07/16/Batch相关/</id>
+    <published>2015-07-16T08:05:30.000Z</published>
+    <updated>2016-03-02T13:48:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>del file # 删除文件<ul>
+<li>/y # 不需要确认</li>
+</ul>
+</li>
+<li>rd dir # 删除文件夹<ul>
+<li>/s /q # 删除非空</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;del file # 删除文件&lt;ul&gt;
+&lt;li&gt;/y # 不需要确认&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;rd dir # 删除文件夹&lt;ul&gt;
+&lt;li&gt;/s /q # 删除非空&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+    
+    </summary>
+    
+      <category term="Windows" scheme="http://delavior.net/categories/Windows/"/>
+    
+    
+      <category term="batch" scheme="http://delavior.net/tags/batch/"/>
+    
+      <category term="windows" scheme="http://delavior.net/tags/windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis与Memcached区别</title>
+    <link href="http://delavior.net/2015/07/11/Redis%E4%B8%8EMemcached%E5%8C%BA%E5%88%AB/"/>
+    <id>http://delavior.net/2015/07/11/Redis与Memcached区别/</id>
+    <published>2015-07-10T17:55:19.000Z</published>
+    <updated>2016-03-05T03:40:18.999Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li><p>redis不仅支持简单的k/v类型数据，还提供list，set，hash等数据结构的存储</p>
+</li>
+<li><p>redis单线程，memcached多线程非阻塞，分为监听主线程和worker子线程</p>
+</li>
+<li><p>redis提供了事务功能，可以保证一串事务的原子性；memcached提供了cas命令，可以保证并发访问操作同一数据的一致性问题</p>
+</li>
+<li><p>redis使用现场申请内存的方式来存储数据，并且很少使用free-list等方式来优化内存分配，会在一定程度上存在内存碎片；memcached使用预分配内存池的方式，可以省去申请/释放内存的开销，并且减少内存碎片产生，但会带来一定程度上的空间浪费 </p>
+</li>
+<li><p>redis支持master-slave模式的数据备份</p>
+</li>
+<li><p>redis支持数据的持久化，可将内存中的数据保存在磁盘中，重启的时候可以加载再次使用</p>
+</li>
+<li><p>redis的缓存更新策略支持FIFO、LRU、LFU，可以自行选择配置；memcached的缓存更新策略是LRU，无法选择 </p>
+</li>
+<li><p>过期策略:redis通过expire设定；memcached在set时指定</p>
+</li>
+<li><p>redis支持虚拟内存，可以限定内存使用大小，当数据超过阈值，则将会把最不常用数据保存到硬盘的页面文件中</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;redis不仅支持简单的k/v类型数据，还提供list，set，hash等数据结构的存储&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;redis单线程，memcached多线程非阻塞，分为监听主线程和worker子线程&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;redis提
+    
+    </summary>
+    
+      <category term="Java" scheme="http://delavior.net/categories/Java/"/>
+    
+    
+      <category term="redis" scheme="http://delavior.net/tags/redis/"/>
+    
+      <category term="memcached" scheme="http://delavior.net/tags/memcached/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android基础</title>
+    <link href="http://delavior.net/2015/06/19/Android%E5%9F%BA%E7%A1%80/"/>
+    <id>http://delavior.net/2015/06/19/Android基础/</id>
+    <published>2015-06-19T12:00:03.000Z</published>
+    <updated>2016-03-02T13:34:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Android系统主要由5部分组成"><a href="#Android系统主要由5部分组成" class="headerlink" title="Android系统主要由5部分组成"></a>Android系统主要由5部分组成</h2><ul>
+<li>应用程序层</li>
+<li>应用程序框架</li>
+<li>函数库</li>
+<li>Android运行时<ul>
+<li>Android核心库集</li>
+<li>Dalvik虚拟机</li>
+</ul>
+</li>
+<li>Linux内核<h2 id="Dalvik虚拟机与JVM区别"><a href="#Dalvik虚拟机与JVM区别" class="headerlink" title="Dalvik虚拟机与JVM区别"></a>Dalvik虚拟机与JVM区别</h2></li>
+<li>JVM虚拟机运行的是Java字节码(.class文件),Dalvik虚拟机运行的是专有的dex文件.专有的dex文件减少了.class文件中的冗余信息,而且会把所有.class文件整合到一个文件中,从而提高运行性能,而且dx工具还会对dex文件进行一些性能的优化</li>
+<li>JVM直接从.class文件或Jar包中加载字节码然后运行,Dalvik需要通过DX工具将应用程序的所有的.class文件编译成.dex文件,然后Dalvik虚拟机则运行该dex文件</li>
+<li>JVM基于栈的,Dalvik虚拟机基于寄存器.基于寄存器的虚拟机具有更好的性能表现,但在硬件通用性上略差</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Android系统主要由5部分组成&quot;&gt;&lt;a href=&quot;#Android系统主要由5部分组成&quot; class=&quot;headerlink&quot; title=&quot;Android系统主要由5部分组成&quot;&gt;&lt;/a&gt;Android系统主要由5部分组成&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;应用程序
+    
+    </summary>
+    
+      <category term="Android" scheme="http://delavior.net/categories/Android/"/>
+    
+    
+      <category term="android" scheme="http://delavior.net/tags/android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ReentrantLock与Synchronized区别</title>
+    <link href="http://delavior.net/2015/06/12/ReentrantLock%E4%B8%8ESynchronized%E5%8C%BA%E5%88%AB/"/>
+    <id>http://delavior.net/2015/06/12/ReentrantLock与Synchronized区别/</id>
+    <published>2015-06-12T01:27:55.000Z</published>
+    <updated>2016-03-05T03:28:43.999Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li><p>用法区别</p>
+<ul>
+<li><p>synchronized:在需要同步的对象中加入此控制，synchronized可以加在方法上，也可以加在特定代码块中，括号中表示需要锁的对象;</p>
+<ul>
+<li><p>无法中断一个等候锁的线程</p>
+</li>
+<li><p>无法通过投票获得锁</p>
+</li>
+<li><p>释放锁的操作只能在获得锁所在的代码块中进行，无法在别的代码块中释放锁</p>
+</li>
+</ul>
+</li>
+<li><p>lock:需要显式指定起始位置和结束位置，多线程中必须要使用一个ReentrantLock类作为对象才能保证锁的生效，且在加锁和解锁处需要通过lock()和unlock()显式指出，一般在finally块中写unlock以防止死锁;ReentrantLock获取锁的几种方式，</p>
+<ul>
+<li><p>lock, 如果获取了锁立即返回，否则处于休眠状态，直到获取锁</p>
+</li>
+<li><p>tryLock，如果获取了锁立即返回true，否则返回false</p>
+</li>
+<li><p>tryLock(long timeout, TimeUnit unit)，如果获取了锁立即返回true，否则等待给定时间，等待中获取锁返回true，等待结束未获取锁返回false</p>
+</li>
+<li><p>lockInterruptibly，如果获取了锁立即返回，否则处于休眠直到获取锁或被别的线程中断</p>
+</li>
+</ul>
+</li>
+<li><p>结论:synchronized是在JVM层面上实现的，如果在代码执行时出现异常，JVM会自动释放锁；lock是通过代码实现的，要保证锁一定会被释放，就必须将unlock放到finally块中</p>
+</li>
+</ul>
+</li>
+<li><p>性能区别</p>
+<ul>
+<li><p>synchronized:采用的是CPU悲观锁机制，即线程获得的是独占锁。独占锁意味着其他线程只能依靠阻塞来等待当前线程释放锁。而在CPU转换线程阻塞时会引起线程上下文切换，当有很多线程竞争锁的时候，会引起CPU频繁的上下文切换导致效率很低</p>
+</li>
+<li><p>lock:用的是乐观锁方式。乐观锁即假设没有冲突而去完成某项操作，如果因为冲突导致失败就重试，直到成功为止。乐观锁实现的机制CAS操作(Compare and Swap)。</p>
+</li>
+<li><p>结论:在资源竞争不是很激烈的情况下，synchronized性能要优于lock，在资源竞争很激烈的情况下，synchronized的性能迅速下降，而reentrantlock性能将维持常态</p>
+</li>
+</ul>
+</li>
+<li><p>用途区别</p>
+</li>
+</ol>
+<p>两者在一般情况下的用途没有差别，但是在复杂的同步应用中，应考虑使用ReentrantLock，因为lock提供了多样化的同步，</p>
+<ul>
+<li><p>定时锁等候-在等候时间内未获取锁，线程会自己中断</p>
+</li>
+<li><p>可中断锁等候-线程等候可以自己中断，也可以由别的线程中断</p>
+</li>
+<li><p>锁投票</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;用法区别&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;synchronized:在需要同步的对象中加入此控制，synchronized可以加在方法上，也可以加在特定代码块中，括号中表示需要锁的对象;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;无法中断一个等候锁的线程&lt;/p&gt;
+&lt;
+    
+    </summary>
+    
+      <category term="Java" scheme="http://delavior.net/categories/Java/"/>
+    
+    
+      <category term="线程" scheme="http://delavior.net/tags/%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+</feed>

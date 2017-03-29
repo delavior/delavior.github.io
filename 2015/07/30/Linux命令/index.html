@@ -1,0 +1,1041 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="On The Way" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="awk:强大复杂的文本分析工具(见附注)
+bzip2:bz2文件压缩解压工具
+-d:解压
+
+
+cat:查看文件
+cat /dev/null &amp;gt; xxx:清空文件内容
+
+
+cd:转移路径
+cp:复制文件(cp patha pathb)
+-f:如果目标文件无法打开则将其移除并重试(无提示)
+-R/-r:递归复制目录及其子目录
+
+
+df:查看文件系统的大小
+-h:以容易理解的格式列出文件大小
+-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令">
+<meta property="og:url" content="http://delavior.net/2015/07/30/Linux命令/index.html">
+<meta property="og:site_name" content="On The Way">
+<meta property="og:description" content="awk:强大复杂的文本分析工具(见附注)
+bzip2:bz2文件压缩解压工具
+-d:解压
+
+
+cat:查看文件
+cat /dev/null &amp;gt; xxx:清空文件内容
+
+
+cd:转移路径
+cp:复制文件(cp patha pathb)
+-f:如果目标文件无法打开则将其移除并重试(无提示)
+-R/-r:递归复制目录及其子目录
+
+
+df:查看文件系统的大小
+-h:以容易理解的格式列出文件大小
+-">
+<meta property="og:updated_time" content="2016-05-08T02:42:07.999Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux常用命令">
+<meta name="twitter:description" content="awk:强大复杂的文本分析工具(见附注)
+bzip2:bz2文件压缩解压工具
+-d:解压
+
+
+cat:查看文件
+cat /dev/null &amp;gt; xxx:清空文件内容
+
+
+cd:转移路径
+cp:复制文件(cp patha pathb)
+-f:如果目标文件无法打开则将其移除并重试(无提示)
+-R/-r:递归复制目录及其子目录
+
+
+df:查看文件系统的大小
+-h:以容易理解的格式列出文件大小
+-">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://delavior.net/2015/07/30/Linux命令/"/>
+
+
+  <title> Linux常用命令 | On The Way </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans,en,default">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-64537113-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">On The Way</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'zydjF9KVxHP4TgbEY-TQ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux常用命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-30T16:39:03+08:00" content="2015-07-30">
+              2015-07-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/30/Linux命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/30/Linux命令/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>awk:强大复杂的文本分析工具(见附注)</li>
+<li>bzip2:bz2文件压缩解压工具<ul>
+<li>-d:解压</li>
+</ul>
+</li>
+<li>cat:查看文件<ul>
+<li>cat /dev/null &gt; xxx:清空文件内容</li>
+</ul>
+</li>
+<li>cd:转移路径</li>
+<li>cp:复制文件(cp patha pathb)<ul>
+<li>-f:如果目标文件无法打开则将其移除并重试(无提示)</li>
+<li>-R/-r:递归复制目录及其子目录</li>
+</ul>
+</li>
+<li>df:查看文件系统的大小<ul>
+<li>-h:以容易理解的格式列出文件大小</li>
+<li>-l:列出文件的详细信息</li>
+</ul>
+</li>
+<li>du:显示文件或目录的磁盘占用量,格式为du [option] 目录或文件(默认为当前目录) [附加命令]<ul>
+<li>–max-depth=N(如果N为0,则统计当前目录总大小;如果N为1,则统计当前目录及其直接子目录的大小;依次类推)</li>
+<li>-h:以容易理解的格式列出文件大小</li>
+<li>-l:列出文件的详细信息</li>
+</ul>
+</li>
+<li>find:格式为find [OPTION] path [expression]<ul>
+<li>find path -name xxx:在path下查找匹配xxx的文件(默认当前目录)</li>
+<li>-name:按名字查找</li>
+<li>-type:按类型查找 <ul>
+<li>-d:文件类型为目录</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>grep:文本搜索工具,如果搜索来源为文件则源置后,否则源置前<ul>
+<li>-P:使用正则表达式</li>
+<li>-i:忽略大小写</li>
+</ul>
+</li>
+<li>head:显示前几行<ul>
+<li>-n:显示前n行</li>
+</ul>
+</li>
+<li>iptables:防火墙相关<ul>
+<li>–dport:目的端口 </li>
+<li>–sport:源端口</li>
+<li>-A:追加新规则(INPUT/OUTPUT)    </li>
+<li>-L:显示所有规则</li>
+<li>-d:目的地址</li>
+<li>-i:输入接口</li>
+<li>-j:执行目标(ACCEPT/DROP/QUEUE/RETURN)</li>
+<li>-o:输出接口</li>
+<li>-p:指定协议</li>
+<li>-s:源地址</li>
+</ul>
+</li>
+<li>jar<ul>
+<li>-c:创建新jar包</li>
+<li>-f:指定jar文件名</li>
+<li>-M:不生成清单文件,此命令会忽略-m参数</li>
+<li>-m:指定manifest清单文件</li>
+<li>-u:更新存在的jar文件</li>
+<li>-v:生成详细报告并打印到标准输出</li>
+<li>-x:展开jar文件包中的指定文件或所有文件  </li>
+</ul>
+</li>
+<li>last:查看用户登录、注销和重启终端的记录</li>
+<li>ln:格式为ln [option] 原文件 要生成的链接<ul>
+<li>-s:创建符号链接而非硬链接 </li>
+</ul>
+</li>
+<li>ls:显示当前路径下的文件和目录<ul>
+<li>-A:列出除.及..以外的任何项目</li>
+<li>-a:列出目录下所有文件,包括以.开头的隐含文件</li>
+<li>-h:以容易理解的格式列出文件大小</li>
+<li>-k:以K为单位列出文件大小</li>
+<li>-l:列出文件的详细信息(部分系统可以简写为ll)</li>
+</ul>
+</li>
+<li>lsb_release:查看当前发行版<ul>
+<li>-a:查看发行版版本的所有信息</li>
+</ul>
+</li>
+<li>make:编译<ul>
+<li>make install &amp;&gt; xxx:将安装信息存入日志文件</li>
+<li>make install:安装</li>
+</ul>
+</li>
+<li>mv:移动文件及单文件重命名(mv patha/filea pathb/fileb:如果filea与fileb文件名不同,则重命名 )<ul>
+<li>-f:覆盖前不询问</li>
+<li>-v:显示详细信息</li>
+</ul>
+</li>
+<li>netstat:查看端口状态<ul>
+<li>-a:查看全部状态的端口(监听和非监听)</li>
+<li>-e:查看所有附加信息</li>
+<li>-l:只显示监听状态的端口</li>
+<li>-n:使用数字而不是主机名/域名显示连接的主机(IP + 端口)</li>
+<li>-p:查看使用当前端口的程序的PID和名称</li>
+<li>-t:仅显示tcp相关</li>
+</ul>
+</li>
+<li>pwd:显示当前路径</li>
+<li>rm:<ul>
+<li>-f:删除前不询问</li>
+<li>-r:递归删除目录及其子目录</li>
+</ul>
+</li>
+<li>sort:按字母排序(注意:被分隔的重复行不计入重复行)<ul>
+<li>-k:指定间隔符(默认为空格) </li>
+<li>-n:按数字排序</li>
+<li>-r:反序</li>
+<li>-t:指定按第几列排序</li>
+</ul>
+</li>
+<li>tail:查看文件最后10行<ul>
+<li>-c:指定输出字节数</li>
+<li>-f:随文件变化而变化</li>
+<li>-n:指定输出行数(可省略n,eg:tail -10 = tail -n 10)</li>
+<li>–pid:指定进程号，在进程死掉后输出结束</li>
+<li>-q:不显示处理详情</li>
+<li>-s:指定休眠间隔(单位为秒)</li>
+<li>-v:显示详情</li>
+</ul>
+</li>
+<li>tar<ul>
+<li>-c:创建新压缩文件</li>
+<li>-f:使用归档文件,后须直接连接待解压文件</li>
+<li>-v:详细列出处理文件</li>
+<li>-x:解压文件</li>
+<li>-z:使用gzip格式(压缩或解压)</li>
+</ul>
+</li>
+<li>tr:字符或字符串替换–tr source dst<ul>
+<li>-s:删除多个连续字符或字符串,只保留一个–tr -s ‘ ‘ ‘\n’</li>
+</ul>
+</li>
+<li>uname:查看当前系统<ul>
+<li>-a:linux系统的详细信息号</li>
+<li>-m:查看CPU型号</li>
+</ul>
+</li>
+<li>uniq:报告或删除文件中的重复行<ul>
+<li>-c:在输出行前面加上每行在文件中出现的次数</li>
+<li>-d:只显示重复行</li>
+</ul>
+</li>
+<li>unzip<ul>
+<li>-l:查看zip文件内容而不解压</li>
+<li>-t:验证zip文件完整性</li>
+<li>-v:查看zip文件详细信息(不解压)</li>
+</ul>
+</li>
+<li>wc<ul>
+<li>-c:统计字节数</li>
+<li>-l:统计行数</li>
+<li>-w:统计字数</li>
+</ul>
+</li>
+<li>zip:格式为zip [option] 压缩文件名 待压缩文件路径(如为多个以空格分隔)<ul>
+<li>-r:递归压缩目录及其内的子目录</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>awk:</li>
+<li>简单示例:<ul>
+<li>awk ‘{print $1,$4}’ file.txt</li>
+<li>单引号中被大括号包着的即为awk的语句</li>
+<li>\$0表示整行</li>
+<li>$n表示第n列</li>
+</ul>
+</li>
+<li>格式化示例:<blockquote>
+<p>awk ‘{printf “%-8s %2s\n”,$2,$6}’ file.txt</p>
+<ul>
+<li>格式化输出与C语言相同</li>
+<li>s表示字符串</li>
+<li>-8表示从左边算起每列长度一共为8</li>
+</ul>
+</blockquote>
+</li>
+<li>过滤示例:<blockquote>
+<p>awk ‘$3==0 &amp;&amp; $5==”tcp”‘ file.txt</p>
+<ul>
+<li>可以使用的比较运算符有==、&gt;=、&lt;=、&gt;、&lt;、!=</li>
+</ul>
+</blockquote>
+</li>
+<li>指定分隔符示例:<blockquote>
+<p>awk -F OFS=”\t” ‘{print $1,$3,$6}’ file.txt</p>
+</blockquote>
+</li>
+<li>模式匹配示例:<blockquote>
+<p>awk ‘/LISTEN/‘ file.txt<br>awk ‘$6 ~ /FIN|TIME/ || NR==1 {print NR,$4,$5,$6}’ OFS=”\t” file.txt</p>
+<ul>
+<li>‘/ /‘内即为需要匹配的字符串</li>
+<li>~为匹配,!~为不匹配</li>
+</ul>
+</blockquote>
+</li>
+<li>内建变量<ul>
+<li>FS:输入字段分隔符,默认为空格或Tab</li>
+<li>NF:列数</li>
+<li>NR:行数</li>
+<li>RS:输入记录分隔符,默认为换行符</li>
+<li>OFS:输出字段分隔符,默认为空格或Tab</li>
+<li>ORS:输出记录分隔符,默认为换行符</li>
+<li>FILENAME:当前输入文件的名字     </li>
+</ul>
+</li>
+<li>参数<ul>
+<li>-F:指定域分隔符,如果不指定,默认为空格</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wxqrcode.png" alt="delavior wechat" style="width: 200px; max-width: 100%;"/>
+    <div>摇一摇</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/30/Java引用/" rel="next" title="Java引用">
+                <i class="fa fa-chevron-left"></i> Java引用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/02/Linux修改主机名/" rel="prev" title="Linux修改主机名">
+                Linux修改主机名 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/07/30/Linux命令/"
+     data-title="Linux常用命令"
+     data-content=""
+     data-url="http://delavior.net/2015/07/30/Linux命令/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/07/30/Linux命令/"
+           data-title="Linux常用命令" data-url="http://delavior.net/2015/07/30/Linux命令/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="delavior" />
+          <p class="site-author-name" itemprop="name">delavior</p>
+          <p class="site-description motion-element" itemprop="description">Write Something when I'm on the way to be a real programmer.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/delavior" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/delavior" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-zhihu"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://v2ex.com/member/delavior" target="_blank" title="V2EX">
+                  
+                    <i class="fa fa-fw fa-v2ex"></i>
+                  
+                  V2EX
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/delavior" target="_blank" title="Douban">
+                  
+                    <i class="fa fa-fw fa-douban"></i>
+                  
+                  Douban
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Sun Jun 29 2014 08:00:00 GMT+0800 (中国标准时间) - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">delavior</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"delavior"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

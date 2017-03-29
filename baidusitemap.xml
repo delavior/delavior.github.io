@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>http://delavior.net/2017/03/29/oracle%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E5%8E%9F%E5%9B%A0/</loc>
+    <lastmod>2017-03-29T10:52:53.649Z</lastmod>
+    <data>
+        <display>
+        <title>oracle索引失效原因</title>
+        <pubTime>2017-03-29T10:46:20.000Z</pubTime>
+        
+        <tag>oracle</tag>
+         
+        <tag>index</tag>
+         
+         
+           
+             
+              <breadCrumb title="SQL" url="http://delavior.net/categories/SQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+    
+  <url>
+    <loc>http://delavior.net/2016/06/23/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2016-06-23T09:07:38.000Z</lastmod>
+    <data>
+        <display>
+        <title>Git常用命令</title>
+        <pubTime>2016-06-23T09:07:04.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/07/30/Linux%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2016-05-08T02:42:07.999Z</lastmod>
+    <data>
+        <display>
+        <title>Linux常用命令</title>
+        <pubTime>2015-07-30T08:39:03.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="http://delavior.net/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/03/14/Idea%E5%BF%AB%E6%8D%B7%E9%94%AE/</loc>
+    <lastmod>2016-04-05T14:40:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>Idea快捷键</title>
+        <pubTime>2015-03-14T08:39:09.000Z</pubTime>
+        
+        <tag>idea</tag>
+         
+         
+           
+             
+              <breadCrumb title="Tool" url="http://delavior.net/categories/Tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2016/03/18/%E5%AF%B9ThreadLocal%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
+    <lastmod>2016-03-18T09:10:13.000Z</lastmod>
+    <data>
+        <display>
+        <title>对ThreadLocal的理解</title>
+        <pubTime>2016-03-18T09:09:46.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>thread</tag>
+         
+         
+           
+             
+              <breadCrumb title="Thread" url="http://delavior.net/categories/Thread/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/02/08/%E7%BC%96%E7%A0%81%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2016-03-05T03:51:38.000Z</lastmod>
+    <data>
+        <display>
+        <title>编码相关</title>
+        <pubTime>2015-02-08T11:32:21.000Z</pubTime>
+        
+        <tag>编码</tag>
+         
+         
+           
+             
+              <breadCrumb title="Basic" url="http://delavior.net/categories/Basic/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/04/04/Tomcat-IO/</loc>
+    <lastmod>2016-03-05T03:45:53.999Z</lastmod>
+    <data>
+        <display>
+        <title>Tomcat IO</title>
+        <pubTime>2015-04-04T14:08:27.000Z</pubTime>
+        
+        <tag>tomcat</tag>
+         
+         
+           
+             
+              <breadCrumb title="Tomcat" url="http://delavior.net/categories/Tomcat/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2016/01/26/Mybatis%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2016-03-05T03:44:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Mybatis批量操作</title>
+        <pubTime>2016-01-25T18:44:44.000Z</pubTime>
+        
+        <tag>mybatis</tag>
+         
+         
+           
+             
+              <breadCrumb title="Mybatis" url="http://delavior.net/categories/Mybatis/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/08/22/Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2016-03-05T03:42:16.999Z</lastmod>
+    <data>
+        <display>
+        <title>Nginx学习笔记</title>
+        <pubTime>2015-08-22T05:52:24.000Z</pubTime>
+        
+        <tag>nginx</tag>
+         
+         
+           
+             
+              <breadCrumb title="Nginx" url="http://delavior.net/categories/Nginx/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/04/19/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
+    <lastmod>2016-03-05T03:40:38.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java线程池</title>
+        <pubTime>2015-04-19T08:58:39.000Z</pubTime>
+        
+        <tag>线程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://delavior.net/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/07/11/Redis%E4%B8%8EMemcached%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2016-03-05T03:40:18.999Z</lastmod>
+    <data>
+        <display>
+        <title>Redis与Memcached区别</title>
+        <pubTime>2015-07-10T17:55:19.000Z</pubTime>
+        
+        <tag>redis</tag>
+         
+        <tag>memcached</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://delavior.net/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/06/12/ReentrantLock%E4%B8%8ESynchronized%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2016-03-05T03:28:43.999Z</lastmod>
+    <data>
+        <display>
+        <title>ReentrantLock与Synchronized区别</title>
+        <pubTime>2015-06-12T01:27:55.000Z</pubTime>
+        
+        <tag>线程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://delavior.net/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/01/22/%E8%A7%A6%E5%8F%91JVM-full-gc%E7%9A%84%E6%83%85%E5%86%B5/</loc>
+    <lastmod>2016-03-05T03:27:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>触发JVM full gc的情况</title>
+        <pubTime>2015-01-22T12:42:14.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>jvm</tag>
+         
+        <tag>gc</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://delavior.net/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/05/09/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2016-03-05T03:27:48.000Z</lastmod>
+    <data>
+        <display>
+        <title>生产者消费者问题</title>
+        <pubTime>2015-05-09T00:58:47.000Z</pubTime>
+        
+        <tag>线程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://delavior.net/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/11/13/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2016-03-05T03:26:34.999Z</lastmod>
+    <data>
+        <display>
+        <title>Mybatis学习笔记</title>
+        <pubTime>2015-11-12T20:49:34.000Z</pubTime>
+        
+        <tag>mybatis</tag>
+         
+         
+           
+             
+              <breadCrumb title="Mybatis" url="http://delavior.net/categories/Mybatis/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/07/30/Java%E5%BC%95%E7%94%A8/</loc>
+    <lastmod>2016-03-05T03:26:21.999Z</lastmod>
+    <data>
+        <display>
+        <title>Java引用</title>
+        <pubTime>2015-07-30T08:39:03.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>reference</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://delavior.net/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/01/05/Java%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</loc>
+    <lastmod>2016-03-05T03:26:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java基本数据类型</title>
+        <pubTime>2015-01-05T02:47:57.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://delavior.net/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/05/10/Java%E5%90%8C%E6%AD%A5/</loc>
+    <lastmod>2016-03-05T03:26:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java同步</title>
+        <pubTime>2015-05-10T08:44:30.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>同步</tag>
+         
+        <tag>锁</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://delavior.net/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/04/15/Hibernate%E5%85%B3%E8%81%94/</loc>
+    <lastmod>2016-03-05T03:26:00.999Z</lastmod>
+    <data>
+        <display>
+        <title>Hibernate关联</title>
+        <pubTime>2015-04-14T20:04:18.000Z</pubTime>
+        
+        <tag>hibernate</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hibernate" url="http://delavior.net/categories/Hibernate/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2016/02/28/wait%E4%B8%8Esleep%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2016-03-05T03:24:07.999Z</lastmod>
+    <data>
+        <display>
+        <title>wait与sleep区别</title>
+        <pubTime>2016-02-27T17:04:04.000Z</pubTime>
+        
+        <tag>线程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://delavior.net/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/01/15/%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2016-03-04T04:46:50.999Z</lastmod>
+    <data>
+        <display>
+        <title>死锁问题</title>
+        <pubTime>2015-01-14T20:53:45.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://delavior.net/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/05/06/%E4%BA%8C%E5%88%86%E6%B3%95/</loc>
+    <lastmod>2016-03-04T04:45:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>二分法</title>
+        <pubTime>2015-05-05T17:09:47.000Z</pubTime>
+        
+        <tag>algorithm</tag>
+         
+        <tag>二分法</tag>
+         
+         
+           
+             
+              <breadCrumb title="Algorithm" url="http://delavior.net/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/05/07/%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB/</loc>
+    <lastmod>2016-03-04T04:42:53.999Z</lastmod>
+    <data>
+        <display>
+        <title>匿名内部类</title>
+        <pubTime>2015-05-07T03:53:49.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>内部类</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://delavior.net/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2016/01/30/Log4j%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2016-03-04T04:33:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>Log4j配置</title>
+        <pubTime>2016-01-30T12:57:48.000Z</pubTime>
+        
+        <tag>log4j</tag>
+         
+         
+           
+             
+              <breadCrumb title="Apache" url="http://delavior.net/categories/Apache/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/11/06/Hibernate%E7%BC%93%E5%AD%98/</loc>
+    <lastmod>2016-03-04T02:13:16.999Z</lastmod>
+    <data>
+        <display>
+        <title>Hibernate缓存</title>
+        <pubTime>2015-11-05T23:48:37.000Z</pubTime>
+        
+        <tag>hibernate</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hibernate" url="http://delavior.net/categories/Hibernate/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/03/14/Hibernate%E5%A4%9A%E6%80%81/</loc>
+    <lastmod>2016-03-04T02:08:49.999Z</lastmod>
+    <data>
+        <display>
+        <title>Hibernate多态</title>
+        <pubTime>2015-03-13T21:29:02.000Z</pubTime>
+        
+        <tag>hibernate</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hibernate" url="http://delavior.net/categories/Hibernate/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/10/06/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/</loc>
+    <lastmod>2016-03-04T01:13:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hibernate延迟加载</title>
+        <pubTime>2015-10-05T22:11:23.000Z</pubTime>
+        
+        <tag>hibernate</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hibernate" url="http://delavior.net/categories/Hibernate/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/08/02/Linux%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%9C%BA%E5%90%8D/</loc>
+    <lastmod>2016-03-03T14:24:56.999Z</lastmod>
+    <data>
+        <display>
+        <title>Linux修改主机名</title>
+        <pubTime>2015-08-02T06:56:41.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="http://delavior.net/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/02/27/Git%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%E5%88%B0Github/</loc>
+    <lastmod>2016-03-03T14:24:39.999Z</lastmod>
+    <data>
+        <display>
+        <title>Git提交代码到Github</title>
+        <pubTime>2015-02-27T06:54:25.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://delavior.net/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/05/03/SVN%E5%88%86%E6%94%AF%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2016-03-03T14:24:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>SVN分支合并操作</title>
+        <pubTime>2015-05-02T16:45:23.000Z</pubTime>
+        
+        <tag>svn</tag>
+         
+         
+           
+             
+              <breadCrumb title="SVN" url="http://delavior.net/categories/SVN/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/02/22/Git-commit-message%E5%86%99%E6%B3%95%E7%A4%BA%E4%BE%8B/</loc>
+    <lastmod>2016-03-03T14:23:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>Git commit message写法示例</title>
+        <pubTime>2015-02-22T06:54:07.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://delavior.net/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/03/25/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2016-03-02T13:55:06.999Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记</title>
+        <pubTime>2015-03-25T08:17:48.000Z</pubTime>
+        
+        <tag>design pattern</tag>
+         
+         
+           
+             
+              <breadCrumb title="Design Pattern" url="http://delavior.net/categories/Design-Pattern/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/04/08/CleanCode%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2016-03-02T13:52:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>CleanCode学习笔记</title>
+        <pubTime>2015-04-08T04:35:25.000Z</pubTime>
+        
+        <tag>重构</tag>
+         
+         
+           
+             
+              <breadCrumb title="重构" url="http://delavior.net/categories/%E9%87%8D%E6%9E%84/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/07/16/Batch%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2016-03-02T13:48:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>Batch相关</title>
+        <pubTime>2015-07-16T08:05:30.000Z</pubTime>
+        
+        <tag>batch</tag>
+         
+        <tag>windows</tag>
+         
+         
+           
+             
+              <breadCrumb title="Windows" url="http://delavior.net/categories/Windows/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/04/16/Windows%E9%98%B2%E7%81%AB%E5%A2%99%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2016-03-02T13:43:35.000Z</lastmod>
+    <data>
+        <display>
+        <title>Windows防火墙相关</title>
+        <pubTime>2015-04-16T08:59:54.000Z</pubTime>
+        
+        <tag>windows</tag>
+         
+         
+           
+             
+              <breadCrumb title="Windows" url="http://delavior.net/categories/Windows/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/08/12/Windows%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2016-03-02T13:41:29.999Z</lastmod>
+    <data>
+        <display>
+        <title>Windows服务相关</title>
+        <pubTime>2015-08-12T09:04:55.000Z</pubTime>
+        
+        <tag>windows</tag>
+         
+         
+           
+             
+              <breadCrumb title="Windows" url="http://delavior.net/categories/Windows/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/11/27/%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E4%B8%8E%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81/</loc>
+    <lastmod>2016-03-02T13:39:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>本地代码与托管代码</title>
+        <pubTime>2015-11-27T03:48:42.000Z</pubTime>
+        
+        <tag>other</tag>
+         
+         
+           
+             
+              <breadCrumb title="Other" url="http://delavior.net/categories/Other/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/10/18/ASCII%E7%A0%81%E8%A1%A8/</loc>
+    <lastmod>2016-03-02T13:36:47.999Z</lastmod>
+    <data>
+        <display>
+        <title>ASCII码表</title>
+        <pubTime>2015-10-17T21:28:12.000Z</pubTime>
+        
+        <tag>ascii</tag>
+         
+         
+           
+             
+              <breadCrumb title="Basic" url="http://delavior.net/categories/Basic/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/06/19/Android%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2016-03-02T13:34:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android基础</title>
+        <pubTime>2015-06-19T12:00:03.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://delavior.net/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2014/12/24/%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2016-03-02T13:32:28.000Z</lastmod>
+    <data>
+        <display>
+        <title>哈希算法相关</title>
+        <pubTime>2014-12-24T07:59:19.000Z</pubTime>
+        
+        <tag>algorithm</tag>
+         
+        <tag>hash</tag>
+         
+         
+           
+             
+              <breadCrumb title="Algorithm" url="http://delavior.net/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/06/10/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2016-03-02T13:26:20.999Z</lastmod>
+    <data>
+        <display>
+        <title>快速排序相关</title>
+        <pubTime>2015-06-10T03:37:15.000Z</pubTime>
+        
+        <tag>algorithm</tag>
+         
+         
+           
+             
+              <breadCrumb title="Algorithm" url="http://delavior.net/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://delavior.net/2015/01/15/mysql%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/</loc>
+    <lastmod>2016-03-02T13:23:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>mysql主从同步</title>
+        <pubTime>2015-01-15T07:52:53.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+         
+           
+             
+              <breadCrumb title="Mysql" url="http://delavior.net/categories/Mysql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+</urlset>
