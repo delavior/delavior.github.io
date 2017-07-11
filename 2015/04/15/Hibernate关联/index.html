@@ -87,6 +87,7 @@
 
 
 <meta name="description" content="Hibernate鼓励使用双向一对多关联，不使用单向一对多关联。单向一对多关联映射是在one端维护的，必须先保存many端后才能保存one端。保存many端时不知道one端是否存在相应的数据，所以只能能维护的关系字段设置为null，如果非空则无法保存。因为是one端维护关系，所以在保存one端时，会发现多余的update语句维护many端的外键关系Hibernate鼓励使用多对一关系取代一对一关系">
+<meta name="keywords" content="hibernate">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hibernate关联">
 <meta property="og:url" content="http://delavior.net/2015/04/15/Hibernate关联/index.html">
@@ -107,7 +108,7 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 'undefined',
       author: '博主'
     }
   };
@@ -338,13 +339,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/04/15/Hibernate关联/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/15/Hibernate关联/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -431,25 +425,6 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/04/15/Hibernate关联/"
-     data-title="Hibernate关联"
-     data-content=""
-     data-url="http://delavior.net/2015/04/15/Hibernate关联/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
@@ -460,10 +435,6 @@
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2015/04/15/Hibernate关联/"
-           data-title="Hibernate关联" data-url="http://delavior.net/2015/04/15/Hibernate关联/">
-      </div>
     
   </div>
 
@@ -728,30 +699,9 @@
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"delavior"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
 
 
 

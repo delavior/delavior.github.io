@@ -86,43 +86,17 @@
 
 
 
-<meta name="description" content="JVM GC对于不同类型的引用有不同的处理方式
-强引用
-如果一个对象有强引用,即使内存空间不足,JVM也不会回收该对象,而是会抛出OutOfMemoryError,使程序异常中止
-
-软引用(SoftReference)
-如果一个对象只有软引用,那么垃圾回收器在内存空间充足的情况下不会回收该对象,但内存空间不足时则自动回收该对象
-
-软引用可用来实现内存敏感的高速缓存
-
-软引用可以和一个引用队列联合引">
+<meta name="description" content="JVM GC对于不同类型的引用有不同的处理方式 强引用 如果一个对象有强引用,即使内存空间不足,JVM也不会回收该对象,而是会抛出OutOfMemoryError,使程序异常中止  软引用(SoftReference) 如果一个对象只有软引用,那么垃圾回收器在内存空间充足的情况下不会回收该对象,但内存空间不足时则自动回收该对象  软引用可用来实现内存敏感的高速缓存  软引用可以和一个引用队列联合引">
+<meta name="keywords" content="java,reference">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java引用">
 <meta property="og:url" content="http://delavior.net/2015/07/30/Java引用/index.html">
 <meta property="og:site_name" content="On The Way">
-<meta property="og:description" content="JVM GC对于不同类型的引用有不同的处理方式
-强引用
-如果一个对象有强引用,即使内存空间不足,JVM也不会回收该对象,而是会抛出OutOfMemoryError,使程序异常中止
-
-软引用(SoftReference)
-如果一个对象只有软引用,那么垃圾回收器在内存空间充足的情况下不会回收该对象,但内存空间不足时则自动回收该对象
-
-软引用可用来实现内存敏感的高速缓存
-
-软引用可以和一个引用队列联合引">
+<meta property="og:description" content="JVM GC对于不同类型的引用有不同的处理方式 强引用 如果一个对象有强引用,即使内存空间不足,JVM也不会回收该对象,而是会抛出OutOfMemoryError,使程序异常中止  软引用(SoftReference) 如果一个对象只有软引用,那么垃圾回收器在内存空间充足的情况下不会回收该对象,但内存空间不足时则自动回收该对象  软引用可用来实现内存敏感的高速缓存  软引用可以和一个引用队列联合引">
 <meta property="og:updated_time" content="2016-03-05T03:26:21.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java引用">
-<meta name="twitter:description" content="JVM GC对于不同类型的引用有不同的处理方式
-强引用
-如果一个对象有强引用,即使内存空间不足,JVM也不会回收该对象,而是会抛出OutOfMemoryError,使程序异常中止
-
-软引用(SoftReference)
-如果一个对象只有软引用,那么垃圾回收器在内存空间充足的情况下不会回收该对象,但内存空间不足时则自动回收该对象
-
-软引用可用来实现内存敏感的高速缓存
-
-软引用可以和一个引用队列联合引">
+<meta name="twitter:description" content="JVM GC对于不同类型的引用有不同的处理方式 强引用 如果一个对象有强引用,即使内存空间不足,JVM也不会回收该对象,而是会抛出OutOfMemoryError,使程序异常中止  软引用(SoftReference) 如果一个对象只有软引用,那么垃圾回收器在内存空间充足的情况下不会回收该对象,但内存空间不足时则自动回收该对象  软引用可用来实现内存敏感的高速缓存  软引用可以和一个引用队列联合引">
 
 
 
@@ -134,7 +108,7 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 'undefined',
       author: '博主'
     }
   };
@@ -365,13 +339,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/30/Java引用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/30/Java引用/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -464,16 +431,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/16/Batch相关/" rel="next" title="Batch相关">
-                <i class="fa fa-chevron-left"></i> Batch相关
+              <a href="/2015/07/30/Linux命令/" rel="next" title="Linux常用命令">
+                <i class="fa fa-chevron-left"></i> Linux常用命令
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/07/30/Linux命令/" rel="prev" title="Linux常用命令">
-                Linux常用命令 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/08/02/Linux修改主机名/" rel="prev" title="Linux修改主机名">
+                Linux修改主机名 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -489,25 +456,6 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/07/30/Java引用/"
-     data-title="Java引用"
-     data-content=""
-     data-url="http://delavior.net/2015/07/30/Java引用/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
@@ -518,10 +466,6 @@
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2015/07/30/Java引用/"
-           data-title="Java引用" data-url="http://delavior.net/2015/07/30/Java引用/">
-      </div>
     
   </div>
 
@@ -786,30 +730,9 @@
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"delavior"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
 
 
 

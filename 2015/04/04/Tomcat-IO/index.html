@@ -86,34 +86,17 @@
 
 
 
-<meta name="description" content="Tomcat的三种IO策略:BIO,NIO,APR  
-
-BIO是Tomcat默认开启的IO模式，性能较低，没有经过优化处理
-
-NIO，利用Java的非阻塞技术。开启方法：将tomcat子目录下面的server.xml修改一下，将中的protocol改为org.apache.coyote.http11.Http11NioProtocol
-
-APR，开启方法:将protocol改为org.apach">
+<meta name="description" content="Tomcat的三种IO策略:BIO,NIO,APR    BIO是Tomcat默认开启的IO模式，性能较低，没有经过优化处理  NIO，利用Java的非阻塞技术。开启方法：将tomcat子目录下面的server.xml修改一下，将中的protocol改为org.apache.coyote.http11.Http11NioProtocol  APR，开启方法:将protocol改为org.apach">
+<meta name="keywords" content="tomcat">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tomcat IO">
 <meta property="og:url" content="http://delavior.net/2015/04/04/Tomcat-IO/index.html">
 <meta property="og:site_name" content="On The Way">
-<meta property="og:description" content="Tomcat的三种IO策略:BIO,NIO,APR  
-
-BIO是Tomcat默认开启的IO模式，性能较低，没有经过优化处理
-
-NIO，利用Java的非阻塞技术。开启方法：将tomcat子目录下面的server.xml修改一下，将中的protocol改为org.apache.coyote.http11.Http11NioProtocol
-
-APR，开启方法:将protocol改为org.apach">
+<meta property="og:description" content="Tomcat的三种IO策略:BIO,NIO,APR    BIO是Tomcat默认开启的IO模式，性能较低，没有经过优化处理  NIO，利用Java的非阻塞技术。开启方法：将tomcat子目录下面的server.xml修改一下，将中的protocol改为org.apache.coyote.http11.Http11NioProtocol  APR，开启方法:将protocol改为org.apach">
 <meta property="og:updated_time" content="2016-03-05T03:45:53.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat IO">
-<meta name="twitter:description" content="Tomcat的三种IO策略:BIO,NIO,APR  
-
-BIO是Tomcat默认开启的IO模式，性能较低，没有经过优化处理
-
-NIO，利用Java的非阻塞技术。开启方法：将tomcat子目录下面的server.xml修改一下，将中的protocol改为org.apache.coyote.http11.Http11NioProtocol
-
-APR，开启方法:将protocol改为org.apach">
+<meta name="twitter:description" content="Tomcat的三种IO策略:BIO,NIO,APR    BIO是Tomcat默认开启的IO模式，性能较低，没有经过优化处理  NIO，利用Java的非阻塞技术。开启方法：将tomcat子目录下面的server.xml修改一下，将中的protocol改为org.apache.coyote.http11.Http11NioProtocol  APR，开启方法:将protocol改为org.apach">
 
 
 
@@ -125,7 +108,7 @@ APR，开启方法:将protocol改为org.apach">
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 'undefined',
       author: '博主'
     }
   };
@@ -356,13 +339,6 @@ APR，开启方法:将protocol改为org.apach">
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/04/04/Tomcat-IO/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/04/Tomcat-IO/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -457,25 +433,6 @@ APR，开启方法:将protocol改为org.apach">
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/04/04/Tomcat-IO/"
-     data-title="Tomcat IO"
-     data-content=""
-     data-url="http://delavior.net/2015/04/04/Tomcat-IO/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
@@ -486,10 +443,6 @@ APR，开启方法:将protocol改为org.apach">
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2015/04/04/Tomcat-IO/"
-           data-title="Tomcat IO" data-url="http://delavior.net/2015/04/04/Tomcat-IO/">
-      </div>
     
   </div>
 
@@ -754,30 +707,9 @@ APR，开启方法:将protocol改为org.apach">
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"delavior"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
 
 
 

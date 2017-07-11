@@ -86,46 +86,17 @@
 
 
 
-<meta name="description" content="Android系统主要由5部分组成
-应用程序层
-应用程序框架
-函数库
-Android运行时
-Android核心库集
-Dalvik虚拟机
-
-
-Linux内核Dalvik虚拟机与JVM区别
-JVM虚拟机运行的是Java字节码(.class文件),Dalvik虚拟机运行的是专有的dex文件.专有的dex文件减少了.class文件中的冗余信息,而且会把所有.class文件整合到一个文件中,从而提高运行性能">
+<meta name="description" content="Android系统主要由5部分组成 应用程序层 应用程序框架 函数库 Android运行时 Android核心库集 Dalvik虚拟机   Linux内核Dalvik虚拟机与JVM区别 JVM虚拟机运行的是Java字节码(.class文件),Dalvik虚拟机运行的是专有的dex文件.专有的dex文件减少了.class文件中的冗余信息,而且会把所有.class文件整合到一个文件中,从而提高运行性能">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android基础">
 <meta property="og:url" content="http://delavior.net/2015/06/19/Android基础/index.html">
 <meta property="og:site_name" content="On The Way">
-<meta property="og:description" content="Android系统主要由5部分组成
-应用程序层
-应用程序框架
-函数库
-Android运行时
-Android核心库集
-Dalvik虚拟机
-
-
-Linux内核Dalvik虚拟机与JVM区别
-JVM虚拟机运行的是Java字节码(.class文件),Dalvik虚拟机运行的是专有的dex文件.专有的dex文件减少了.class文件中的冗余信息,而且会把所有.class文件整合到一个文件中,从而提高运行性能">
+<meta property="og:description" content="Android系统主要由5部分组成 应用程序层 应用程序框架 函数库 Android运行时 Android核心库集 Dalvik虚拟机   Linux内核Dalvik虚拟机与JVM区别 JVM虚拟机运行的是Java字节码(.class文件),Dalvik虚拟机运行的是专有的dex文件.专有的dex文件减少了.class文件中的冗余信息,而且会把所有.class文件整合到一个文件中,从而提高运行性能">
 <meta property="og:updated_time" content="2016-03-02T13:34:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android基础">
-<meta name="twitter:description" content="Android系统主要由5部分组成
-应用程序层
-应用程序框架
-函数库
-Android运行时
-Android核心库集
-Dalvik虚拟机
-
-
-Linux内核Dalvik虚拟机与JVM区别
-JVM虚拟机运行的是Java字节码(.class文件),Dalvik虚拟机运行的是专有的dex文件.专有的dex文件减少了.class文件中的冗余信息,而且会把所有.class文件整合到一个文件中,从而提高运行性能">
+<meta name="twitter:description" content="Android系统主要由5部分组成 应用程序层 应用程序框架 函数库 Android运行时 Android核心库集 Dalvik虚拟机   Linux内核Dalvik虚拟机与JVM区别 JVM虚拟机运行的是Java字节码(.class文件),Dalvik虚拟机运行的是专有的dex文件.专有的dex文件减少了.class文件中的冗余信息,而且会把所有.class文件整合到一个文件中,从而提高运行性能">
 
 
 
@@ -137,7 +108,7 @@ JVM虚拟机运行的是Java字节码(.class文件),Dalvik虚拟机运行的是�
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 'undefined',
       author: '博主'
     }
   };
@@ -368,13 +339,6 @@ JVM虚拟机运行的是Java字节码(.class文件),Dalvik虚拟机运行的是�
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/19/Android基础/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/19/Android基础/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -474,25 +438,6 @@ JVM虚拟机运行的是Java字节码(.class文件),Dalvik虚拟机运行的是�
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/06/19/Android基础/"
-     data-title="Android基础"
-     data-content=""
-     data-url="http://delavior.net/2015/06/19/Android基础/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
@@ -503,10 +448,6 @@ JVM虚拟机运行的是Java字节码(.class文件),Dalvik虚拟机运行的是�
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2015/06/19/Android基础/"
-           data-title="Android基础" data-url="http://delavior.net/2015/06/19/Android基础/">
-      </div>
     
   </div>
 
@@ -771,30 +712,9 @@ JVM虚拟机运行的是Java字节码(.class文件),Dalvik虚拟机运行的是�
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"delavior"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
 
 
 

@@ -86,34 +86,17 @@
 
 
 
-<meta name="description" content="redis不仅支持简单的k/v类型数据，还提供list，set，hash等数据结构的存储
-
-redis单线程，memcached多线程非阻塞，分为监听主线程和worker子线程
-
-redis提供了事务功能，可以保证一串事务的原子性；memcached提供了cas命令，可以保证并发访问操作同一数据的一致性问题
-
-redis使用现场申请内存的方式来存储数据，并且很少使用free-list等方式来优化">
+<meta name="description" content="redis不仅支持简单的k/v类型数据，还提供list，set，hash等数据结构的存储  redis单线程，memcached多线程非阻塞，分为监听主线程和worker子线程  redis提供了事务功能，可以保证一串事务的原子性；memcached提供了cas命令，可以保证并发访问操作同一数据的一致性问题  redis使用现场申请内存的方式来存储数据，并且很少使用free-list等方式来优化">
+<meta name="keywords" content="redis,memcached">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis与Memcached区别">
 <meta property="og:url" content="http://delavior.net/2015/07/11/Redis与Memcached区别/index.html">
 <meta property="og:site_name" content="On The Way">
-<meta property="og:description" content="redis不仅支持简单的k/v类型数据，还提供list，set，hash等数据结构的存储
-
-redis单线程，memcached多线程非阻塞，分为监听主线程和worker子线程
-
-redis提供了事务功能，可以保证一串事务的原子性；memcached提供了cas命令，可以保证并发访问操作同一数据的一致性问题
-
-redis使用现场申请内存的方式来存储数据，并且很少使用free-list等方式来优化">
+<meta property="og:description" content="redis不仅支持简单的k/v类型数据，还提供list，set，hash等数据结构的存储  redis单线程，memcached多线程非阻塞，分为监听主线程和worker子线程  redis提供了事务功能，可以保证一串事务的原子性；memcached提供了cas命令，可以保证并发访问操作同一数据的一致性问题  redis使用现场申请内存的方式来存储数据，并且很少使用free-list等方式来优化">
 <meta property="og:updated_time" content="2016-03-05T03:40:18.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis与Memcached区别">
-<meta name="twitter:description" content="redis不仅支持简单的k/v类型数据，还提供list，set，hash等数据结构的存储
-
-redis单线程，memcached多线程非阻塞，分为监听主线程和worker子线程
-
-redis提供了事务功能，可以保证一串事务的原子性；memcached提供了cas命令，可以保证并发访问操作同一数据的一致性问题
-
-redis使用现场申请内存的方式来存储数据，并且很少使用free-list等方式来优化">
+<meta name="twitter:description" content="redis不仅支持简单的k/v类型数据，还提供list，set，hash等数据结构的存储  redis单线程，memcached多线程非阻塞，分为监听主线程和worker子线程  redis提供了事务功能，可以保证一串事务的原子性；memcached提供了cas命令，可以保证并发访问操作同一数据的一致性问题  redis使用现场申请内存的方式来存储数据，并且很少使用free-list等方式来优化">
 
 
 
@@ -125,7 +108,7 @@ redis使用现场申请内存的方式来存储数据，并且很少使用free-l
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 'undefined',
       author: '博主'
     }
   };
@@ -356,13 +339,6 @@ redis使用现场申请内存的方式来存储数据，并且很少使用free-l
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/11/Redis与Memcached区别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/11/Redis与Memcached区别/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -470,25 +446,6 @@ redis使用现场申请内存的方式来存储数据，并且很少使用free-l
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/07/11/Redis与Memcached区别/"
-     data-title="Redis与Memcached区别"
-     data-content=""
-     data-url="http://delavior.net/2015/07/11/Redis与Memcached区别/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
@@ -499,10 +456,6 @@ redis使用现场申请内存的方式来存储数据，并且很少使用free-l
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2015/07/11/Redis与Memcached区别/"
-           data-title="Redis与Memcached区别" data-url="http://delavior.net/2015/07/11/Redis与Memcached区别/">
-      </div>
     
   </div>
 
@@ -767,30 +720,9 @@ redis使用现场申请内存的方式来存储数据，并且很少使用free-l
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"delavior"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
 
 
 

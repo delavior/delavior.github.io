@@ -86,83 +86,18 @@
 
 
 
-<meta name="description" content="####线程池作用
-
-降低资源消耗
-
-通过重复利用已创建的线程降低线程创建和销毁造成的消耗    
-
-
-提高响应速度
-
-当任务到达时，任务可以不需要等到线程创建就能立即执行
-
-
-提高线程的可管理性
-
-无限制创建线程不仅会消耗资源还会降低系统的稳定性，使用线程池可以进行统一的分配、调优和监控
-
-
-
-####线程池处理流程
-处理流程如下图：
-
-
-首先判断基本线程池是否已满，没满，创建一个工作线程(线程">
+<meta name="description" content="####线程池作用  降低资源消耗  通过重复利用已创建的线程降低线程创建和销毁造成的消耗       提高响应速度  当任务到达时，任务可以不需要等到线程创建就能立即执行   提高线程的可管理性  无限制创建线程不仅会消耗资源还会降低系统的稳定性，使用线程池可以进行统一的分配、调优和监控    ####线程池处理流程 处理流程如下图：   首先判断基本线程池是否已满，没满，创建一个工作线程(线程">
+<meta name="keywords" content="线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java线程池">
 <meta property="og:url" content="http://delavior.net/2015/04/19/Java线程池/index.html">
 <meta property="og:site_name" content="On The Way">
-<meta property="og:description" content="####线程池作用
-
-降低资源消耗
-
-通过重复利用已创建的线程降低线程创建和销毁造成的消耗    
-
-
-提高响应速度
-
-当任务到达时，任务可以不需要等到线程创建就能立即执行
-
-
-提高线程的可管理性
-
-无限制创建线程不仅会消耗资源还会降低系统的稳定性，使用线程池可以进行统一的分配、调优和监控
-
-
-
-####线程池处理流程
-处理流程如下图：
-
-
-首先判断基本线程池是否已满，没满，创建一个工作线程(线程">
+<meta property="og:description" content="####线程池作用  降低资源消耗  通过重复利用已创建的线程降低线程创建和销毁造成的消耗       提高响应速度  当任务到达时，任务可以不需要等到线程创建就能立即执行   提高线程的可管理性  无限制创建线程不仅会消耗资源还会降低系统的稳定性，使用线程池可以进行统一的分配、调优和监控    ####线程池处理流程 处理流程如下图：   首先判断基本线程池是否已满，没满，创建一个工作线程(线程">
 <meta property="og:image" content="http://delavior.net/images/threadpool.jpg">
 <meta property="og:updated_time" content="2016-03-05T03:40:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java线程池">
-<meta name="twitter:description" content="####线程池作用
-
-降低资源消耗
-
-通过重复利用已创建的线程降低线程创建和销毁造成的消耗    
-
-
-提高响应速度
-
-当任务到达时，任务可以不需要等到线程创建就能立即执行
-
-
-提高线程的可管理性
-
-无限制创建线程不仅会消耗资源还会降低系统的稳定性，使用线程池可以进行统一的分配、调优和监控
-
-
-
-####线程池处理流程
-处理流程如下图：
-
-
-首先判断基本线程池是否已满，没满，创建一个工作线程(线程">
+<meta name="twitter:description" content="####线程池作用  降低资源消耗  通过重复利用已创建的线程降低线程创建和销毁造成的消耗       提高响应速度  当任务到达时，任务可以不需要等到线程创建就能立即执行   提高线程的可管理性  无限制创建线程不仅会消耗资源还会降低系统的稳定性，使用线程池可以进行统一的分配、调优和监控    ####线程池处理流程 处理流程如下图：   首先判断基本线程池是否已满，没满，创建一个工作线程(线程">
 <meta name="twitter:image" content="http://delavior.net/images/threadpool.jpg">
 
 
@@ -175,7 +110,7 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 'undefined',
       author: '博主'
     }
   };
@@ -406,13 +341,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/04/19/Java线程池/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/19/Java线程池/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -527,25 +455,6 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/04/19/Java线程池/"
-     data-title="Java线程池"
-     data-content=""
-     data-url="http://delavior.net/2015/04/19/Java线程池/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
@@ -556,10 +465,6 @@
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2015/04/19/Java线程池/"
-           data-title="Java线程池" data-url="http://delavior.net/2015/04/19/Java线程池/">
-      </div>
     
   </div>
 
@@ -824,30 +729,9 @@
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"delavior"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
 
 
 
