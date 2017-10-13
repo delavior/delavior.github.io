@@ -300,6 +300,176 @@
             
               
                 
+                <a class="post-title-link" href="/2015/06/12/ReentrantLock与Synchronized区别/" itemprop="url">
+                  ReentrantLock与Synchronized区别
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-12T09:27:55+08:00" content="2015-06-12">
+              2015-06-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/12/ReentrantLock与Synchronized区别/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/12/ReentrantLock与Synchronized区别/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>用法区别</p>
+<ul>
+<li><p>synchronized:在需要同步的对象中加入此控制，synchronized可以加在方法上，也可以加在特定代码块中，括号中表示需要锁的对象;</p>
+<ul>
+<li><p>无法中断一个等候锁的线程</p>
+</li>
+<li><p>无法通过投票获得锁</p>
+</li>
+<li><p>释放锁的操作只能在获得锁所在的代码块中进行，无法在别的代码块中释放锁</p>
+</li>
+</ul>
+</li>
+<li><p>lock:需要显式指定起始位置和结束位置，多线程中必须要使用一个ReentrantLock类作为对象才能保证锁的生效，且在加锁和解锁处需要通过lock()和unlock()显式指出，一般在finally块中写unlock以防止死锁;ReentrantLock获取锁的几种方式，</p>
+<ul>
+<li><p>lock, 如果获取了锁立即返回，否则处于休眠状态，直到获取锁</p>
+</li>
+<li><p>tryLock，如果获取了锁立即返回true，否则返回false</p>
+</li>
+<li><p>tryLock(long timeout, TimeUnit unit)，如果获取了锁立即返回true，否则等待给定时间，等待中获取锁返回true，等待结束未获取锁返回false</p>
+</li>
+<li><p>lockInterruptibly，如果获取了锁立即返回，否则处于休眠直到获取锁或被别的线程中断</p>
+</li>
+</ul>
+</li>
+<li><p>结论:synchronized是在JVM层面上实现的，如果在代码执行时出现异常，JVM会自动释放锁；lock是通过代码实现的，要保证锁一定会被释放，就必须将unlock放到finally块中</p>
+</li>
+</ul>
+</li>
+<li><p>性能区别</p>
+<ul>
+<li><p>synchronized:采用的是CPU悲观锁机制，即线程获得的是独占锁。独占锁意味着其他线程只能依靠阻塞来等待当前线程释放锁。而在CPU转换线程阻塞时会引起线程上下文切换，当有很多线程竞争锁的时候，会引起CPU频繁的上下文切换导致效率很低</p>
+</li>
+<li><p>lock:用的是乐观锁方式。乐观锁即假设没有冲突而去完成某项操作，如果因为冲突导致失败就重试，直到成功为止。乐观锁实现的机制CAS操作(Compare and Swap)。</p>
+</li>
+<li><p>结论:在资源竞争不是很激烈的情况下，synchronized性能要优于lock，在资源竞争很激烈的情况下，synchronized的性能迅速下降，而reentrantlock性能将维持常态</p>
+</li>
+</ul>
+</li>
+<li><p>用途区别</p>
+</li>
+</ol>
+<p>两者在一般情况下的用途没有差别，但是在复杂的同步应用中，应考虑使用ReentrantLock，因为lock提供了多样化的同步，</p>
+<ul>
+<li><p>定时锁等候-在等候时间内未获取锁，线程会自己中断</p>
+</li>
+<li><p>可中断锁等候-线程等候可以自己中断，也可以由别的线程中断</p>
+</li>
+<li><p>锁投票</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/06/10/快速排序相关/" itemprop="url">
                   快速排序相关
                 </a>
@@ -1478,135 +1648,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/04/08/CleanCode学习笔记/" itemprop="url">
-                  CleanCode学习笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-04-08T12:35:25+08:00" content="2015-04-08">
-              2015-04-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/重构/" itemprop="url" rel="index">
-                    <span itemprop="name">重构</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/04/08/CleanCode学习笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/08/CleanCode学习笔记/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>参数数量应尽可能少，尽量避免三个及以上个数的参数</li>
-<li>尽量不要使用输出参数，用返回值代替输出参数</li>
-<li>不要使用输出参数(boolean) </li>
-<li>使用异常替代返回错误码</li>
-<li>最好把try/catch代码块的主体部分抽离出来，另外形成函数<ul>
-<li>函数应该只做一件事，错误处理就是一件事，因此处理错误的函数不应该做其他事。这意味着如果关键字try在某个函数中存在，它就该是这个函数的第一个单词，而且在catch/finally代码块后也不该有其他内容 </li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1652,7 +1693,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1660,7 +1701,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1669,7 +1710,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

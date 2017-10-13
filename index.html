@@ -300,6 +300,175 @@
             
               
                 
+                <a class="post-title-link" href="/2017/10/13/httpclient使用/" itemprop="url">
+                  httpclient使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-13T17:36:31+08:00" content="2017-10-13">
+              2017-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/10/13/httpclient使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/10/13/httpclient使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>以下适用于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;</div><div class="line">&lt;artifactId&gt;httpclient&lt;/artifactId&gt;</div><div class="line">&lt;version&gt;4.5.3&lt;/version&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="1-创建httpClient对象"><a href="#1-创建httpClient对象" class="headerlink" title="1. 创建httpClient对象"></a>1. 创建httpClient对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CloseableHttpClient httpClient = HttpClients.createDefault();</div></pre></td></tr></table></figure>
+<p>也可以手动构建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CloseableHttpClient httpClient = HttpClients.custom().setXXX().build();</div></pre></td></tr></table></figure></p>
+<h3 id="设置连接超时"><a href="#设置连接超时" class="headerlink" title="设置连接超时"></a>设置连接超时</h3><p>连接超时的三个参数(默认三个参数为-1，即永不超时):</p>
+<ul>
+<li>connectionRequestTimeout:从连接池中获取连接的超时时间，超时抛出org.apache.http.conn.ConnectionPoolTimeoutException:Timeout waiting for connection from pool</li>
+<li>connectTimeout:请求服务器超时时间，超时抛出connect timeout</li>
+<li>socketTimeout:服务器响应超时时间，超时抛出read timeout</li>
+</ul>
+<p>手动设置超时时间:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RequestConfig requestConfig = RequestConfig.custom().setConnectionRequestTimeout(5000).setConnectTimeout(5000).setSocketTimeout(5000).build();</div></pre></td></tr></table></figure></p>
+<h3 id="设置重试"><a href="#设置重试" class="headerlink" title="设置重试"></a>设置重试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">HttpRequestRetryHandler retryHandler = new DefaultHttpRequestRetryHandler(3, true);</div><div class="line">HttpClients.custom().setRetryHandler(retryHandler);</div></pre></td></tr></table></figure>
+<p>第一个参数为重试次数，第二次参数是否重试</p>
+<h3 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HttpHost proxy = new HttpHost(&quot;ip&quot;, port);</div><div class="line">HttpRoutePlanner routePlanner = new DefaultProxyRoutePlanner(proxy, DefaultSchemePortResolver.INSTANCE);</div><div class="line">HttpClients.custom().setRoutePlanner(routePlanner);</div></pre></td></tr></table></figure>
+<p>如果需要用户密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CredentialsProvider credentialsProvider = new BasicCredentialsProvider();</div><div class="line">credentialsProvider.setCredentials(new AuthScope(&quot;ip&quot;, port), new UsernamePasswordCredentials(&quot;username&quot;, &quot;password&quot;));</div><div class="line">HttpClients.custom().setDefaultCredentialsProvider(credentialsProvider);</div></pre></td></tr></table></figure></p>
+<h3 id="设置cookie"><a href="#设置cookie" class="headerlink" title="设置cookie"></a>设置cookie</h3><p>cookie策略(CookieSpec)(CookiePolicy deprecated)</p>
+<ul>
+<li>netscape</li>
+<li>standard(rfc 6265标准)</li>
+<li>standard-strict(rfc 6265严格)</li>
+<li>default</li>
+<li>ignoreCookies</li>
+<li>best-match(deprecated)</li>
+<li>compatibility(deprecated)</li>
+</ul>
+<p>设置cookie策略<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RequestConfig.custom().setCookieSpec(CookieSpecs.DEFAULT).build();</div></pre></td></tr></table></figure></p>
+<p>使用cookieStore(无论收发都要用到，存放cookie的集合TreeSet)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CookieStore cookieStore = new BasicCookieStore();</div><div class="line">HttpClients.custom().setDefaultCookieStore(cookieStore);</div></pre></td></tr></table></figure></p>
+<p>发cookie<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">BasicClientCookie basicClientCookie = new BasicClientCookie(&quot;cookieName&quot;, &quot;cookieValue&quot;);</div><div class="line">basicClientCookie.setCreationDate(new Date());</div><div class="line">basicClientCookie.setDomain(&quot;&quot;);</div><div class="line">basicClientCookie.setExpiryDate(null);</div><div class="line">basicClientCookie.setVersion(0);</div><div class="line">basicClientCookie.setPath(&quot;&quot;);</div><div class="line">basicClientCookie.setAttribute(&quot;&quot;, &quot;&quot;);</div></pre></td></tr></table></figure></p>
+<p>cookie属性理解</p>
+<ul>
+<li>domain:cookie所在的域名，如果未指定则为当前页面域名，只有访问的域名匹配上domain属性，cookie才会发送</li>
+<li>path:cookie所在的路径，必须是绝对路径，只有path与当前向服务端发送的路径匹配，cookie才会发送(只有domain匹配了，才会进行path的匹配判断)</li>
+<li>version:cookie有2个不同格式版本，cookie version 0是netscape制定的，cookie version 1是根据rfc 2109制定的，java限制使用version 0</li>
+</ul>
+<p>获取cookie<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List&lt;Cookie&gt; cookies = cookieStore.getCookies();</div></pre></td></tr></table></figure></p>
+<h2 id="2-构建请求-以post为例"><a href="#2-构建请求-以post为例" class="headerlink" title="2. 构建请求(以post为例)"></a>2. 构建请求(以post为例)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HttpPost httpPost = new HttpPost(String url);</div></pre></td></tr></table></figure>
+<p>添加header:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">httpPost.addHeader(Header);</div><div class="line">httpPost.addHeader(&quot;&quot;,&quot;&quot;);</div></pre></td></tr></table></figure></p>
+<p>发送数据:</p>
+<ul>
+<li><p>可以使用StringEntity(json对象转换为字符串):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">String requestMsg = &quot;&quot;;</div><div class="line">StringEntity entity = new StringEntity(requestMsg);</div><div class="line">httpPost.setEntity(entity);</div></pre></td></tr></table></figure>
+</li>
+<li><p>可以使用UrlEncodedFormEntity</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">List&lt;NameValuePair&gt; nameValuePairs = new ArrayList&lt;&gt;();</div><div class="line">nameValuePairs.add(new BasicNameValuePair(&quot;&quot;, &quot;&quot;));</div><div class="line">nameValuePairs.add(new BasicNameValuePair(&quot;&quot;, &quot;&quot;));</div><div class="line">UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(nameValuePairs);</div><div class="line">httpPost.setEntity(formEntity);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-执行请求"><a href="#3-执行请求" class="headerlink" title="3. 执行请求"></a>3. 执行请求</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CloseableHttpResponse response = httpClient.execute(HttpUriRequest); // HttpUriRequest为httpGet/httpPost等的接口</div></pre></td></tr></table></figure>
+<h2 id="4-处理结果"><a href="#4-处理结果" class="headerlink" title="4. 处理结果"></a>4. 处理结果</h2><p>获取返回的页面或值:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String result = EntityUtils.toString(response.getEntity());</div></pre></td></tr></table></figure></p>
+<p>获取状态码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int statusCode = response.getStatusLine().getStatusCode();</div></pre></td></tr></table></figure></p>
+<p>获取返回输入流:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">InputStream in = response.getEntity().getContent();</div></pre></td></tr></table></figure></p>
+<p>获取header<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Header[] headers = response.getAllHeaders();</div><div class="line">Header[] headers2 = response.getHeaders(&quot;&quot;);</div></pre></td></tr></table></figure></p>
+<h2 id="5-关闭相关连接和流"><a href="#5-关闭相关连接和流" class="headerlink" title="5. 关闭相关连接和流"></a>5. 关闭相关连接和流</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">if (response != null) &#123;</div><div class="line">    try &#123;</div><div class="line">        response.close();</div><div class="line">    &#125; catch (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">if (httpClient != null) &#123;</div><div class="line">    try &#123;</div><div class="line">        httpClient.close();</div><div class="line">    &#125; catch (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/29/oracle索引失效原因/" itemprop="url">
                   oracle索引失效原因
                 </a>
@@ -1747,126 +1916,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/18/ASCII码表/" itemprop="url">
-                  ASCII码表
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-18T05:28:12+08:00" content="2015-10-18">
-              2015-10-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Basic/" itemprop="url" rel="index">
-                    <span itemprop="name">Basic</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/18/ASCII码表/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/18/ASCII码表/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>36:$<br>45:-<br>46:.<br>47:/<br>48:0<br>58::<br>65:A<br>94:^<br>95:_<br>97:a</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1912,7 +1961,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1920,7 +1969,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1929,7 +1978,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -300,6 +300,135 @@
             
               
                 
+                <a class="post-title-link" href="/2015/04/08/CleanCode学习笔记/" itemprop="url">
+                  CleanCode学习笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-04-08T12:35:25+08:00" content="2015-04-08">
+              2015-04-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/重构/" itemprop="url" rel="index">
+                    <span itemprop="name">重构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/04/08/CleanCode学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/08/CleanCode学习笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>参数数量应尽可能少，尽量避免三个及以上个数的参数</li>
+<li>尽量不要使用输出参数，用返回值代替输出参数</li>
+<li>不要使用输出参数(boolean) </li>
+<li>使用异常替代返回错误码</li>
+<li>最好把try/catch代码块的主体部分抽离出来，另外形成函数<ul>
+<li>函数应该只做一件事，错误处理就是一件事，因此处理错误的函数不应该做其他事。这意味着如果关键字try在某个函数中存在，它就该是这个函数的第一个单词，而且在catch/finally代码块后也不该有其他内容 </li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/04/04/Tomcat-IO/" itemprop="url">
                   Tomcat IO
                 </a>
@@ -1620,168 +1749,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/01/15/死锁问题/" itemprop="url">
-                  死锁问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-01-15T04:53:45+08:00" content="2015-01-15">
-              2015-01-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/01/15/死锁问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/01/15/死锁问题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>####导致死锁的程序示例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">   ﻿public class DeadLockDemo &#123;</div><div class="line"></div><div class="line">public static void main(String[] args) throws InterruptedException &#123;</div><div class="line"></div><div class="line">	Object obj1 = new Object();</div><div class="line"></div><div class="line">	Object obj2 = new Object();</div><div class="line"></div><div class="line">	Object obj3 = new Object();</div><div class="line"></div><div class="line">	</div><div class="line"></div><div class="line">	Thread t1 = new Thread(new ThreadDemo(obj1, obj2), &quot;t1&quot;);</div><div class="line"></div><div class="line">	Thread t2 = new Thread(new ThreadDemo(obj2, obj3), &quot;t2&quot;);</div><div class="line"></div><div class="line">	Thread t3 = new Thread(new ThreadDemo(obj3, obj1), &quot;t3&quot;);</div><div class="line"></div><div class="line">	</div><div class="line"></div><div class="line">	t1.start();</div><div class="line"></div><div class="line">	Thread.sleep(500);</div><div class="line"></div><div class="line">	t2.start();</div><div class="line"></div><div class="line">	Thread.sleep(500);</div><div class="line"></div><div class="line">	t3.start();</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">   ﻿&#125;</div><div class="line"></div><div class="line">   ﻿class ThreadDemo implements Runnable &#123;</div><div class="line"></div><div class="line">private Object obj1;</div><div class="line"></div><div class="line">private Object obj2;</div><div class="line"></div><div class="line">public ThreadDemo(Object o1, Object o2) &#123;</div><div class="line"></div><div class="line">	this.obj1 = o1;</div><div class="line"></div><div class="line">	this.obj2 = o2;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public void run() &#123;</div><div class="line"></div><div class="line">	String name = Thread.currentThread().getName();</div><div class="line"></div><div class="line">	System.out.println(name + &quot; accquiring lock on &quot; + obj1);</div><div class="line"></div><div class="line">	synchronized (obj1) &#123;</div><div class="line"></div><div class="line">		System.out.println(name + &quot; accquired lock on &quot; + obj1);</div><div class="line"></div><div class="line">		work();</div><div class="line"></div><div class="line">		System.out.println(name + &quot; accquiring lock on &quot; + obj2);</div><div class="line"></div><div class="line">		synchronized (obj2) &#123;</div><div class="line"></div><div class="line">			System.out.println(name + &quot; accquired lock on &quot; + obj2);</div><div class="line"></div><div class="line">			work();</div><div class="line"></div><div class="line">		&#125;</div><div class="line"></div><div class="line">		System.out.println(name + &quot; release lock on &quot; + obj2);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	System.out.println(name + &quot; release lock on &quot; + obj1);</div><div class="line"></div><div class="line">	System.out.println(name + &quot; finished execution&quot;);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">private void work() &#123;</div><div class="line"></div><div class="line">	try &#123;</div><div class="line"></div><div class="line">		Thread.sleep(1000);</div><div class="line"></div><div class="line">	&#125; catch (InterruptedException e) &#123;</div><div class="line"></div><div class="line">		e.printStackTrace();</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">   ﻿&#125;</div></pre></td></tr></table></figure>
-<p>原因分析:t1在获取obj1锁后休眠1秒钟，而在这段时间内，t2和t3已经先后启动并分别获取了obj2和obj3的锁，这样t1休眠结束后想要获取obj2的锁就必须等待t2获取obj3的锁，而t2要想获取obj3的锁则要等待t3获取obj1的锁，造成了循环等待 </p>
-<p>####死锁条件</p>
-<ul>
-<li><p>互斥条件:资源不能共享，只能由一个进程使用</p>
-</li>
-<li><p>请求保持条件:进程已获得了一些资源，但因请求其他资源被阻塞时，对已获得的资源保持不放</p>
-</li>
-<li><p>不可抢占条件:有些系统资源是不可抢占的，当某个进程已获得这种资源后，系统不能强行收回，只能由进程使用完后自己释放</p>
-</li>
-<li><p>循环等待条件:若干进程形成环形链，每个都占用对方申请的下一个资源</p>
-</li>
-</ul>
-<p>####java多线程死锁原因</p>
-<ul>
-<li><p>多个线程涉及到多个锁，这些锁存在着交叉，可能会导致一个锁依赖的闭环</p>
-</li>
-<li><p>默认的锁申请操作是阻塞的</p>
-</li>
-</ul>
-<p>####避免死锁</p>
-<ul>
-<li><p>避免嵌套封锁</p>
-</li>
-<li><p>只对有请求的进行封锁</p>
-</li>
-<li><p>避免无限期等待</p>
-</li>
-</ul>
-<p>####竞态条件</p>
-<ul>
-<li><p>产生</p>
-<ul>
-<li>﻿当两个线程竞争同一资源时，如果对资源的访问顺序敏感，就称存在竞态条件，导致竞态条件发生的代码区称为临界区</li>
-</ul>
-</li>
-<li><p>避免</p>
-<ul>
-<li>在临界区中使用适当的同步可以避免竞态条件</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1827,7 +1794,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1835,7 +1802,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1844,7 +1811,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

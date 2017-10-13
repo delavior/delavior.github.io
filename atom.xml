@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://delavior.net/"/>
-  <updated>2017-03-29T10:52:53.649Z</updated>
+  <updated>2017-10-13T09:36:58.915Z</updated>
   <id>http://delavior.net/</id>
   
   <author>
@@ -14,6 +14,78 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>httpclient使用</title>
+    <link href="http://delavior.net/2017/10/13/httpclient%E4%BD%BF%E7%94%A8/"/>
+    <id>http://delavior.net/2017/10/13/httpclient使用/</id>
+    <published>2017-10-13T09:36:31.000Z</published>
+    <updated>2017-10-13T09:36:58.915Z</updated>
+    
+    <content type="html"><![CDATA[<p>以下适用于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;</div><div class="line">&lt;artifactId&gt;httpclient&lt;/artifactId&gt;</div><div class="line">&lt;version&gt;4.5.3&lt;/version&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="1-创建httpClient对象"><a href="#1-创建httpClient对象" class="headerlink" title="1. 创建httpClient对象"></a>1. 创建httpClient对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CloseableHttpClient httpClient = HttpClients.createDefault();</div></pre></td></tr></table></figure>
+<p>也可以手动构建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CloseableHttpClient httpClient = HttpClients.custom().setXXX().build();</div></pre></td></tr></table></figure></p>
+<h3 id="设置连接超时"><a href="#设置连接超时" class="headerlink" title="设置连接超时"></a>设置连接超时</h3><p>连接超时的三个参数(默认三个参数为-1，即永不超时):</p>
+<ul>
+<li>connectionRequestTimeout:从连接池中获取连接的超时时间，超时抛出org.apache.http.conn.ConnectionPoolTimeoutException:Timeout waiting for connection from pool</li>
+<li>connectTimeout:请求服务器超时时间，超时抛出connect timeout</li>
+<li>socketTimeout:服务器响应超时时间，超时抛出read timeout</li>
+</ul>
+<p>手动设置超时时间:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RequestConfig requestConfig = RequestConfig.custom().setConnectionRequestTimeout(5000).setConnectTimeout(5000).setSocketTimeout(5000).build();</div></pre></td></tr></table></figure></p>
+<h3 id="设置重试"><a href="#设置重试" class="headerlink" title="设置重试"></a>设置重试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">HttpRequestRetryHandler retryHandler = new DefaultHttpRequestRetryHandler(3, true);</div><div class="line">HttpClients.custom().setRetryHandler(retryHandler);</div></pre></td></tr></table></figure>
+<p>第一个参数为重试次数，第二次参数是否重试</p>
+<h3 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HttpHost proxy = new HttpHost(&quot;ip&quot;, port);</div><div class="line">HttpRoutePlanner routePlanner = new DefaultProxyRoutePlanner(proxy, DefaultSchemePortResolver.INSTANCE);</div><div class="line">HttpClients.custom().setRoutePlanner(routePlanner);</div></pre></td></tr></table></figure>
+<p>如果需要用户密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CredentialsProvider credentialsProvider = new BasicCredentialsProvider();</div><div class="line">credentialsProvider.setCredentials(new AuthScope(&quot;ip&quot;, port), new UsernamePasswordCredentials(&quot;username&quot;, &quot;password&quot;));</div><div class="line">HttpClients.custom().setDefaultCredentialsProvider(credentialsProvider);</div></pre></td></tr></table></figure></p>
+<h3 id="设置cookie"><a href="#设置cookie" class="headerlink" title="设置cookie"></a>设置cookie</h3><p>cookie策略(CookieSpec)(CookiePolicy deprecated)</p>
+<ul>
+<li>netscape</li>
+<li>standard(rfc 6265标准)</li>
+<li>standard-strict(rfc 6265严格)</li>
+<li>default</li>
+<li>ignoreCookies</li>
+<li>best-match(deprecated)</li>
+<li>compatibility(deprecated)</li>
+</ul>
+<p>设置cookie策略<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RequestConfig.custom().setCookieSpec(CookieSpecs.DEFAULT).build();</div></pre></td></tr></table></figure></p>
+<p>使用cookieStore(无论收发都要用到，存放cookie的集合TreeSet)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CookieStore cookieStore = new BasicCookieStore();</div><div class="line">HttpClients.custom().setDefaultCookieStore(cookieStore);</div></pre></td></tr></table></figure></p>
+<p>发cookie<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">BasicClientCookie basicClientCookie = new BasicClientCookie(&quot;cookieName&quot;, &quot;cookieValue&quot;);</div><div class="line">basicClientCookie.setCreationDate(new Date());</div><div class="line">basicClientCookie.setDomain(&quot;&quot;);</div><div class="line">basicClientCookie.setExpiryDate(null);</div><div class="line">basicClientCookie.setVersion(0);</div><div class="line">basicClientCookie.setPath(&quot;&quot;);</div><div class="line">basicClientCookie.setAttribute(&quot;&quot;, &quot;&quot;);</div></pre></td></tr></table></figure></p>
+<p>cookie属性理解</p>
+<ul>
+<li>domain:cookie所在的域名，如果未指定则为当前页面域名，只有访问的域名匹配上domain属性，cookie才会发送</li>
+<li>path:cookie所在的路径，必须是绝对路径，只有path与当前向服务端发送的路径匹配，cookie才会发送(只有domain匹配了，才会进行path的匹配判断)</li>
+<li>version:cookie有2个不同格式版本，cookie version 0是netscape制定的，cookie version 1是根据rfc 2109制定的，java限制使用version 0</li>
+</ul>
+<p>获取cookie<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List&lt;Cookie&gt; cookies = cookieStore.getCookies();</div></pre></td></tr></table></figure></p>
+<h2 id="2-构建请求-以post为例"><a href="#2-构建请求-以post为例" class="headerlink" title="2. 构建请求(以post为例)"></a>2. 构建请求(以post为例)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HttpPost httpPost = new HttpPost(String url);</div></pre></td></tr></table></figure>
+<p>添加header:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">httpPost.addHeader(Header);</div><div class="line">httpPost.addHeader(&quot;&quot;,&quot;&quot;);</div></pre></td></tr></table></figure></p>
+<p>发送数据:</p>
+<ul>
+<li><p>可以使用StringEntity(json对象转换为字符串):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">String requestMsg = &quot;&quot;;</div><div class="line">StringEntity entity = new StringEntity(requestMsg);</div><div class="line">httpPost.setEntity(entity);</div></pre></td></tr></table></figure>
+</li>
+<li><p>可以使用UrlEncodedFormEntity</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">List&lt;NameValuePair&gt; nameValuePairs = new ArrayList&lt;&gt;();</div><div class="line">nameValuePairs.add(new BasicNameValuePair(&quot;&quot;, &quot;&quot;));</div><div class="line">nameValuePairs.add(new BasicNameValuePair(&quot;&quot;, &quot;&quot;));</div><div class="line">UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(nameValuePairs);</div><div class="line">httpPost.setEntity(formEntity);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-执行请求"><a href="#3-执行请求" class="headerlink" title="3. 执行请求"></a>3. 执行请求</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CloseableHttpResponse response = httpClient.execute(HttpUriRequest); // HttpUriRequest为httpGet/httpPost等的接口</div></pre></td></tr></table></figure>
+<h2 id="4-处理结果"><a href="#4-处理结果" class="headerlink" title="4. 处理结果"></a>4. 处理结果</h2><p>获取返回的页面或值:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String result = EntityUtils.toString(response.getEntity());</div></pre></td></tr></table></figure></p>
+<p>获取状态码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int statusCode = response.getStatusLine().getStatusCode();</div></pre></td></tr></table></figure></p>
+<p>获取返回输入流:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">InputStream in = response.getEntity().getContent();</div></pre></td></tr></table></figure></p>
+<p>获取header<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Header[] headers = response.getAllHeaders();</div><div class="line">Header[] headers2 = response.getHeaders(&quot;&quot;);</div></pre></td></tr></table></figure></p>
+<h2 id="5-关闭相关连接和流"><a href="#5-关闭相关连接和流" class="headerlink" title="5. 关闭相关连接和流"></a>5. 关闭相关连接和流</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">if (response != null) &#123;</div><div class="line">    try &#123;</div><div class="line">        response.close();</div><div class="line">    &#125; catch (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">if (httpClient != null) &#123;</div><div class="line">    try &#123;</div><div class="line">        httpClient.close();</div><div class="line">    &#125; catch (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;以下适用于&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=
+    
+    </summary>
+    
+      <category term="java" scheme="http://delavior.net/categories/java/"/>
+    
+    
+      <category term="httpclient" scheme="http://delavior.net/tags/httpclient/"/>
+    
+  </entry>
   
   <entry>
     <title>oracle索引失效原因</title>
@@ -799,6 +871,62 @@
   </entry>
   
   <entry>
+    <title>Java引用</title>
+    <link href="http://delavior.net/2015/07/30/Java%E5%BC%95%E7%94%A8/"/>
+    <id>http://delavior.net/2015/07/30/Java引用/</id>
+    <published>2015-07-30T08:39:03.000Z</published>
+    <updated>2016-03-05T03:26:21.999Z</updated>
+    
+    <content type="html"><![CDATA[<p>JVM GC对于不同类型的引用有不同的处理方式</p>
+<h4 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h4><ul>
+<li>如果一个对象有强引用,即使内存空间不足,JVM也不会回收该对象,而是会抛出OutOfMemoryError,使程序异常中止</li>
+</ul>
+<h4 id="软引用-SoftReference"><a href="#软引用-SoftReference" class="headerlink" title="软引用(SoftReference)"></a>软引用(SoftReference)</h4><ul>
+<li><p>如果一个对象只有软引用,那么垃圾回收器在内存空间充足的情况下不会回收该对象,但内存空间不足时则自动回收该对象</p>
+</li>
+<li><p>软引用可用来实现内存敏感的高速缓存</p>
+</li>
+<li><p>软引用可以和一个引用队列联合引用,如果软引用所引用的对象被垃圾回收,JVM就会把这个软引用加入到与之关联的引用队列中</p>
+</li>
+</ul>
+<h4 id="弱引用-WeakReference"><a href="#弱引用-WeakReference" class="headerlink" title="弱引用(WeakReference)"></a>弱引用(WeakReference)</h4><ul>
+<li><p>与软引用相比,弱引用具有更短的生命周期;垃圾回收器扫描的过程中,一旦发现了只具有弱引用的对象,不管当前空间是否足够都会回收它的内存;不过,垃圾回收器线程优先级很低,不一定会很快发现那些只有弱引用的对象</p>
+</li>
+<li><p>弱引用可以与一个引用队列联合使用,如果弱引用所引用的对象被垃圾回收,JVM就会把这个弱引用加入到与之关联的引用队列中</p>
+</li>
+<li><p>最常用在集合类中,尤其是哈希表中.哈希表的接口允许使用任何java对象作为键来使用,当一个键值对被放入哈希表中之后,哈希表对象本身就有了对这些键和值对象的引用.如果这些引用是强引用的话,那么只要哈希表对象本身还存活,其中所包含的键和值对象就不会被回收.如果某个存活时间很长的哈希表中包含的键值对很多,最终就有可能消耗掉JVM中的全部内存;对于这种情况的解决办法就是使用弱引用来引用这些对象,这样哈希表中的键和值对象都能被垃圾回收.Java中提供了WeakHashMap来满足这一需求</p>
+</li>
+</ul>
+<h4 id="虚引用-PhantomReference"><a href="#虚引用-PhantomReference" class="headerlink" title="虚引用(PhantomReference)"></a>虚引用(PhantomReference)</h4><ul>
+<li><p>虚引用并不会决定对象的生命周期,如果一个对象仅有虚引用,那么它就和没有任何引用一样,在任何时候都可能被垃圾回收</p>
+</li>
+<li><p>虚引用主要用来跟踪对象被垃圾回收的活动</p>
+</li>
+<li><p>虚引用必须和引用队列联合使用,当一个对象的finalize()方法被调用之后,JVM就会把这个虚引用加入到与之关联的引用队列中.程序可以通过判断引用队列中是否已经加入了虚引用来了解被引用的对象是否将要被垃圾回收.</p>
+</li>
+<li><p>主要用来实现比较精细的内存使用控制,程序可以在确定一个对象被回收之后,再申请内存创建新的对象,通过这种方式可以使得程序所消耗的内存维持在一个相对较低的数量. </p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;JVM GC对于不同类型的引用有不同的处理方式&lt;/p&gt;
+&lt;h4 id=&quot;强引用&quot;&gt;&lt;a href=&quot;#强引用&quot; class=&quot;headerlink&quot; title=&quot;强引用&quot;&gt;&lt;/a&gt;强引用&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;如果一个对象有强引用,即使内存空间不足,JVM也不会回收该
+    
+    </summary>
+    
+      <category term="Java" scheme="http://delavior.net/categories/Java/"/>
+    
+    
+      <category term="java" scheme="http://delavior.net/tags/java/"/>
+    
+      <category term="reference" scheme="http://delavior.net/tags/reference/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Linux常用命令</title>
     <link href="http://delavior.net/2015/07/30/Linux%E5%91%BD%E4%BB%A4/"/>
     <id>http://delavior.net/2015/07/30/Linux命令/</id>
@@ -1047,62 +1175,6 @@
   </entry>
   
   <entry>
-    <title>Java引用</title>
-    <link href="http://delavior.net/2015/07/30/Java%E5%BC%95%E7%94%A8/"/>
-    <id>http://delavior.net/2015/07/30/Java引用/</id>
-    <published>2015-07-30T08:39:03.000Z</published>
-    <updated>2016-03-05T03:26:21.999Z</updated>
-    
-    <content type="html"><![CDATA[<p>JVM GC对于不同类型的引用有不同的处理方式</p>
-<h4 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h4><ul>
-<li>如果一个对象有强引用,即使内存空间不足,JVM也不会回收该对象,而是会抛出OutOfMemoryError,使程序异常中止</li>
-</ul>
-<h4 id="软引用-SoftReference"><a href="#软引用-SoftReference" class="headerlink" title="软引用(SoftReference)"></a>软引用(SoftReference)</h4><ul>
-<li><p>如果一个对象只有软引用,那么垃圾回收器在内存空间充足的情况下不会回收该对象,但内存空间不足时则自动回收该对象</p>
-</li>
-<li><p>软引用可用来实现内存敏感的高速缓存</p>
-</li>
-<li><p>软引用可以和一个引用队列联合引用,如果软引用所引用的对象被垃圾回收,JVM就会把这个软引用加入到与之关联的引用队列中</p>
-</li>
-</ul>
-<h4 id="弱引用-WeakReference"><a href="#弱引用-WeakReference" class="headerlink" title="弱引用(WeakReference)"></a>弱引用(WeakReference)</h4><ul>
-<li><p>与软引用相比,弱引用具有更短的生命周期;垃圾回收器扫描的过程中,一旦发现了只具有弱引用的对象,不管当前空间是否足够都会回收它的内存;不过,垃圾回收器线程优先级很低,不一定会很快发现那些只有弱引用的对象</p>
-</li>
-<li><p>弱引用可以与一个引用队列联合使用,如果弱引用所引用的对象被垃圾回收,JVM就会把这个弱引用加入到与之关联的引用队列中</p>
-</li>
-<li><p>最常用在集合类中,尤其是哈希表中.哈希表的接口允许使用任何java对象作为键来使用,当一个键值对被放入哈希表中之后,哈希表对象本身就有了对这些键和值对象的引用.如果这些引用是强引用的话,那么只要哈希表对象本身还存活,其中所包含的键和值对象就不会被回收.如果某个存活时间很长的哈希表中包含的键值对很多,最终就有可能消耗掉JVM中的全部内存;对于这种情况的解决办法就是使用弱引用来引用这些对象,这样哈希表中的键和值对象都能被垃圾回收.Java中提供了WeakHashMap来满足这一需求</p>
-</li>
-</ul>
-<h4 id="虚引用-PhantomReference"><a href="#虚引用-PhantomReference" class="headerlink" title="虚引用(PhantomReference)"></a>虚引用(PhantomReference)</h4><ul>
-<li><p>虚引用并不会决定对象的生命周期,如果一个对象仅有虚引用,那么它就和没有任何引用一样,在任何时候都可能被垃圾回收</p>
-</li>
-<li><p>虚引用主要用来跟踪对象被垃圾回收的活动</p>
-</li>
-<li><p>虚引用必须和引用队列联合使用,当一个对象的finalize()方法被调用之后,JVM就会把这个虚引用加入到与之关联的引用队列中.程序可以通过判断引用队列中是否已经加入了虚引用来了解被引用的对象是否将要被垃圾回收.</p>
-</li>
-<li><p>主要用来实现比较精细的内存使用控制,程序可以在确定一个对象被回收之后,再申请内存创建新的对象,通过这种方式可以使得程序所消耗的内存维持在一个相对较低的数量. </p>
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;JVM GC对于不同类型的引用有不同的处理方式&lt;/p&gt;
-&lt;h4 id=&quot;强引用&quot;&gt;&lt;a href=&quot;#强引用&quot; class=&quot;headerlink&quot; title=&quot;强引用&quot;&gt;&lt;/a&gt;强引用&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;如果一个对象有强引用,即使内存空间不足,JVM也不会回收该
-    
-    </summary>
-    
-      <category term="Java" scheme="http://delavior.net/categories/Java/"/>
-    
-    
-      <category term="java" scheme="http://delavior.net/tags/java/"/>
-    
-      <category term="reference" scheme="http://delavior.net/tags/reference/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Batch相关</title>
     <link href="http://delavior.net/2015/07/16/Batch%E7%9B%B8%E5%85%B3/"/>
     <id>http://delavior.net/2015/07/16/Batch相关/</id>
@@ -1229,85 +1301,6 @@
     
     
       <category term="android" scheme="http://delavior.net/tags/android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ReentrantLock与Synchronized区别</title>
-    <link href="http://delavior.net/2015/06/12/ReentrantLock%E4%B8%8ESynchronized%E5%8C%BA%E5%88%AB/"/>
-    <id>http://delavior.net/2015/06/12/ReentrantLock与Synchronized区别/</id>
-    <published>2015-06-12T01:27:55.000Z</published>
-    <updated>2016-03-05T03:28:43.999Z</updated>
-    
-    <content type="html"><![CDATA[<ol>
-<li><p>用法区别</p>
-<ul>
-<li><p>synchronized:在需要同步的对象中加入此控制，synchronized可以加在方法上，也可以加在特定代码块中，括号中表示需要锁的对象;</p>
-<ul>
-<li><p>无法中断一个等候锁的线程</p>
-</li>
-<li><p>无法通过投票获得锁</p>
-</li>
-<li><p>释放锁的操作只能在获得锁所在的代码块中进行，无法在别的代码块中释放锁</p>
-</li>
-</ul>
-</li>
-<li><p>lock:需要显式指定起始位置和结束位置，多线程中必须要使用一个ReentrantLock类作为对象才能保证锁的生效，且在加锁和解锁处需要通过lock()和unlock()显式指出，一般在finally块中写unlock以防止死锁;ReentrantLock获取锁的几种方式，</p>
-<ul>
-<li><p>lock, 如果获取了锁立即返回，否则处于休眠状态，直到获取锁</p>
-</li>
-<li><p>tryLock，如果获取了锁立即返回true，否则返回false</p>
-</li>
-<li><p>tryLock(long timeout, TimeUnit unit)，如果获取了锁立即返回true，否则等待给定时间，等待中获取锁返回true，等待结束未获取锁返回false</p>
-</li>
-<li><p>lockInterruptibly，如果获取了锁立即返回，否则处于休眠直到获取锁或被别的线程中断</p>
-</li>
-</ul>
-</li>
-<li><p>结论:synchronized是在JVM层面上实现的，如果在代码执行时出现异常，JVM会自动释放锁；lock是通过代码实现的，要保证锁一定会被释放，就必须将unlock放到finally块中</p>
-</li>
-</ul>
-</li>
-<li><p>性能区别</p>
-<ul>
-<li><p>synchronized:采用的是CPU悲观锁机制，即线程获得的是独占锁。独占锁意味着其他线程只能依靠阻塞来等待当前线程释放锁。而在CPU转换线程阻塞时会引起线程上下文切换，当有很多线程竞争锁的时候，会引起CPU频繁的上下文切换导致效率很低</p>
-</li>
-<li><p>lock:用的是乐观锁方式。乐观锁即假设没有冲突而去完成某项操作，如果因为冲突导致失败就重试，直到成功为止。乐观锁实现的机制CAS操作(Compare and Swap)。</p>
-</li>
-<li><p>结论:在资源竞争不是很激烈的情况下，synchronized性能要优于lock，在资源竞争很激烈的情况下，synchronized的性能迅速下降，而reentrantlock性能将维持常态</p>
-</li>
-</ul>
-</li>
-<li><p>用途区别</p>
-</li>
-</ol>
-<p>两者在一般情况下的用途没有差别，但是在复杂的同步应用中，应考虑使用ReentrantLock，因为lock提供了多样化的同步，</p>
-<ul>
-<li><p>定时锁等候-在等候时间内未获取锁，线程会自己中断</p>
-</li>
-<li><p>可中断锁等候-线程等候可以自己中断，也可以由别的线程中断</p>
-</li>
-<li><p>锁投票</p>
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;用法区别&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;synchronized:在需要同步的对象中加入此控制，synchronized可以加在方法上，也可以加在特定代码块中，括号中表示需要锁的对象;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;无法中断一个等候锁的线程&lt;/p&gt;
-&lt;
-    
-    </summary>
-    
-      <category term="Java" scheme="http://delavior.net/categories/Java/"/>
-    
-    
-      <category term="线程" scheme="http://delavior.net/tags/%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
