@@ -300,6 +300,203 @@
             
               
                 
+                <a class="post-title-link" href="/2015/01/15/mysql主从同步/" itemprop="url">
+                  mysql主从同步
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-01-15T15:52:53+08:00" content="2015-01-15">
+              2015-01-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/01/15/mysql主从同步/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/01/15/mysql主从同步/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>实现机制<ul>
+<li>mysql主从同步是在主从复制基础上实现的，通过设置在Master Mysql上的binlog(使其处于打开状态)，slave mysql上通过一个I/O线程从mysql上读取binlog，然后传输到slave mysql的中继日志中，然后slave mysql的sql线程从中继日志中读取中继日志，然后应用到slave mysql的数据库中。这样就实现了主从同步。</li>
+</ul>
+</li>
+<li>作用<ul>
+<li>可以作为一种备份机制，相当于热备份</li>
+<li>可以用来作读写分离，均衡数据库负载</li>
+</ul>
+</li>
+<li>步骤<ul>
+<li>准备<ul>
+<li>主从数据库版本一致</li>
+<li>主从数据库数据一致</li>
+</ul>
+</li>
+<li>主数据库修改<ul>
+<li>修改mysql配置<ul>
+<li>log-bin=mysql-bin  # 日志文件名</li>
+<li>server-id=1  # 主数据库端ID号</li>
+</ul>
+</li>
+<li>重启mysql，创建用于同步的账户<ul>
+<li>grant replication slave on <em>.</em> to ‘xxx’@’%’ identified by ‘xxx’;</li>
+<li>flsuh privileges;</li>
+</ul>
+</li>
+<li>查询master状态<ul>
+<li>show master status;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>从数据库修改<ul>
+<li>修改mysql配置<ul>
+<li>server-id=2 # 从数据库端ID号 </li>
+</ul>
+</li>
+<li>执行同步命令<ul>
+<li>change master to master_host=’master_ip’,master_user=’master_user’,master_password=’master_pwd’ master_log_file=’a’,master_log_pos=b; # 其中a,b为show master status看到的File和Position值 </li>
+<li>start slave;</li>
+</ul>
+</li>
+<li>检查slave状态<ul>
+<li>show slave status\G;  # slave_io_running及slave_sql_running必须运行正常，否则同步失败</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其他相关参数<ul>
+<li>master<ul>
+<li>不同步的数据库<pre><code>* binlog-ignore-db=库名  # 可分多条设置多个 
+</code></pre></li>
+<li>只同步哪些数据库<pre><code>* binlog-do-db=库名   # 开启后只同步这些数据库
+</code></pre></li>
+<li>日志保留时间<pre><code>* expire_logs_days=10
+</code></pre></li>
+<li>控制binlog写入频率<pre><code>* sync_binlog=5  # 每执行多少次事务写入一次，这个参数性能消耗很大，但可减小mysql崩溃损失
+</code></pre></li>
+<li>日志格式，寻访mixed<pre><code>* binlog_format=mixed 
+* statement  # 保存sql语句
+* row  # 保存影响记录数据
+* mixed  # 前面两种的混合
+</code></pre></li>
+</ul>
+</li>
+<li>slave<ul>
+<li>停止同步<pre><code>* stop slave;
+</code></pre></li>
+<li>连接断开时重新连接超时时间<pre><code>* change master to master_connect_retry=50;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/01/15/死锁问题/" itemprop="url">
                   死锁问题
                 </a>
@@ -772,7 +969,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

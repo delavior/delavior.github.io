@@ -300,6 +300,154 @@
             
               
                 
+                <a class="post-title-link" href="/2017/10/16/线程生命周期/" itemprop="url">
+                  线程生命周期
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-16T10:30:45+08:00" content="2017-10-16">
+              2017-10-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/10/16/线程生命周期/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/10/16/线程生命周期/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>线程生命周期有新建(New)、就绪(Runnable)、运行(Running)、阻塞(Blocked)、死亡(Dead)5种状态。</p>
+<ol>
+<li>新建状态，当程序使用new创建了一个线程之后，该线程处于创建状态，此时仅由JVM为其分配内存，并初始化其成员变量的值。</li>
+<li>就绪状态，当线程对象调用了start()方法之后，该线程处于就绪状态。Java虚拟机会为其创建方法调用栈和程序计数器，等待调度运行。</li>
+<li>运行状态，如果处于就绪状态的线程获得了CPU，开始执行run()方法的线程执行体，则该线程处于运行状态。</li>
+<li>阻塞状态，当处于运行状态的线程失去所占用资源之后，便进入阻塞状态。</li>
+<li>死亡状态，当线程的run()方法或call()方法执行完毕，或抛出一个未获取的异常时线程进入死亡状态</li>
+</ol>
+<p>线程调度策略：</p>
+<ul>
+<li>抢占式调度策略(现代桌面和服务器操作系统)：系统会给每个可执行的线程一个小时间段来处理任务，当该时间段用完后系统就会剥夺该线程占用的资源，让其他线程获得执行的机会。在选择下一个线程时，操作系统会考虑线程的优先级。</li>
+<li>协作式调度策略(小型设备)：只有当一个线程调用了sleep()或yield()方法才会放弃所占用的资源，也就是必须由线程主动放弃所占用的资源。</li>
+</ul>
+<p>当发生如下情况时，线程会进入阻塞状态：</p>
+<ul>
+<li>线程调用sleep()方法主动放弃所占用的CPU资源</li>
+<li>线程调用了一个阻塞式IO方法，在该方法返回前，线程被阻塞</li>
+<li>线程试图获得一个锁，但该锁正被其它线程所持有。</li>
+<li>线程在等待某个通知notify。</li>
+<li>程序调用了线程的suspend()方法将该线程挂起。但该方法容易导致死锁，不推荐使用。</li>
+</ul>
+<p>线程结束：</p>
+<ul>
+<li>run()或call()方法执行完成，线程正常结束。</li>
+<li>线程抛出一个未捕获的Exception或Error</li>
+<li>直接调用线程stop()方法来结束该线程——该方法容易导致死锁，不推荐使用</li>
+</ul>
+<p>当线程结束后，不能再调用start()方法使其重新启动(IllegalThreadStateException)。</p>
+<p>当主线程结束后，其他线程不会随之结束。可以调用线程的isAlive()方法判断线程是否死亡，当线程处于就绪、运行、阻塞状态时该方法返回true。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/10/13/httpclient使用/" itemprop="url">
                   httpclient使用
                 </a>
@@ -1796,126 +1944,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/06/Hibernate缓存/" itemprop="url">
-                  Hibernate缓存
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-06T07:48:37+08:00" content="2015-11-06">
-              2015-11-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Hibernate/" itemprop="url" rel="index">
-                    <span itemprop="name">Hibernate</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/11/06/Hibernate缓存/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/06/Hibernate缓存/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Hibernate鼓励使用配置对象缓存，不使用集合缓存</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1961,7 +1989,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

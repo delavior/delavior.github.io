@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://delavior.net/"/>
-  <updated>2017-10-13T09:36:58.915Z</updated>
+  <updated>2017-10-16T02:31:45.115Z</updated>
   <id>http://delavior.net/</id>
   
   <author>
@@ -14,6 +14,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>线程生命周期</title>
+    <link href="http://delavior.net/2017/10/16/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
+    <id>http://delavior.net/2017/10/16/线程生命周期/</id>
+    <published>2017-10-16T02:30:45.000Z</published>
+    <updated>2017-10-16T02:31:45.115Z</updated>
+    
+    <content type="html"><![CDATA[<p>线程生命周期有新建(New)、就绪(Runnable)、运行(Running)、阻塞(Blocked)、死亡(Dead)5种状态。</p>
+<ol>
+<li>新建状态，当程序使用new创建了一个线程之后，该线程处于创建状态，此时仅由JVM为其分配内存，并初始化其成员变量的值。</li>
+<li>就绪状态，当线程对象调用了start()方法之后，该线程处于就绪状态。Java虚拟机会为其创建方法调用栈和程序计数器，等待调度运行。</li>
+<li>运行状态，如果处于就绪状态的线程获得了CPU，开始执行run()方法的线程执行体，则该线程处于运行状态。</li>
+<li>阻塞状态，当处于运行状态的线程失去所占用资源之后，便进入阻塞状态。</li>
+<li>死亡状态，当线程的run()方法或call()方法执行完毕，或抛出一个未获取的异常时线程进入死亡状态</li>
+</ol>
+<p>线程调度策略：</p>
+<ul>
+<li>抢占式调度策略(现代桌面和服务器操作系统)：系统会给每个可执行的线程一个小时间段来处理任务，当该时间段用完后系统就会剥夺该线程占用的资源，让其他线程获得执行的机会。在选择下一个线程时，操作系统会考虑线程的优先级。</li>
+<li>协作式调度策略(小型设备)：只有当一个线程调用了sleep()或yield()方法才会放弃所占用的资源，也就是必须由线程主动放弃所占用的资源。</li>
+</ul>
+<p>当发生如下情况时，线程会进入阻塞状态：</p>
+<ul>
+<li>线程调用sleep()方法主动放弃所占用的CPU资源</li>
+<li>线程调用了一个阻塞式IO方法，在该方法返回前，线程被阻塞</li>
+<li>线程试图获得一个锁，但该锁正被其它线程所持有。</li>
+<li>线程在等待某个通知notify。</li>
+<li>程序调用了线程的suspend()方法将该线程挂起。但该方法容易导致死锁，不推荐使用。</li>
+</ul>
+<p>线程结束：</p>
+<ul>
+<li>run()或call()方法执行完成，线程正常结束。</li>
+<li>线程抛出一个未捕获的Exception或Error</li>
+<li>直接调用线程stop()方法来结束该线程——该方法容易导致死锁，不推荐使用</li>
+</ul>
+<p>当线程结束后，不能再调用start()方法使其重新启动(IllegalThreadStateException)。</p>
+<p>当主线程结束后，其他线程不会随之结束。可以调用线程的isAlive()方法判断线程是否死亡，当线程处于就绪、运行、阻塞状态时该方法返回true。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;线程生命周期有新建(New)、就绪(Runnable)、运行(Running)、阻塞(Blocked)、死亡(Dead)5种状态。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;新建状态，当程序使用new创建了一个线程之后，该线程处于创建状态，此时仅由JVM为其分配内存，并初始化其成员变量的值
+    
+    </summary>
+    
+      <category term="Java" scheme="http://delavior.net/categories/Java/"/>
+    
+    
+      <category term="thread" scheme="http://delavior.net/tags/thread/"/>
+    
+  </entry>
   
   <entry>
     <title>httpclient使用</title>
@@ -1264,43 +1317,6 @@
       <category term="redis" scheme="http://delavior.net/tags/redis/"/>
     
       <category term="memcached" scheme="http://delavior.net/tags/memcached/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android基础</title>
-    <link href="http://delavior.net/2015/06/19/Android%E5%9F%BA%E7%A1%80/"/>
-    <id>http://delavior.net/2015/06/19/Android基础/</id>
-    <published>2015-06-19T12:00:03.000Z</published>
-    <updated>2016-03-02T13:34:25.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Android系统主要由5部分组成"><a href="#Android系统主要由5部分组成" class="headerlink" title="Android系统主要由5部分组成"></a>Android系统主要由5部分组成</h2><ul>
-<li>应用程序层</li>
-<li>应用程序框架</li>
-<li>函数库</li>
-<li>Android运行时<ul>
-<li>Android核心库集</li>
-<li>Dalvik虚拟机</li>
-</ul>
-</li>
-<li>Linux内核<h2 id="Dalvik虚拟机与JVM区别"><a href="#Dalvik虚拟机与JVM区别" class="headerlink" title="Dalvik虚拟机与JVM区别"></a>Dalvik虚拟机与JVM区别</h2></li>
-<li>JVM虚拟机运行的是Java字节码(.class文件),Dalvik虚拟机运行的是专有的dex文件.专有的dex文件减少了.class文件中的冗余信息,而且会把所有.class文件整合到一个文件中,从而提高运行性能,而且dx工具还会对dex文件进行一些性能的优化</li>
-<li>JVM直接从.class文件或Jar包中加载字节码然后运行,Dalvik需要通过DX工具将应用程序的所有的.class文件编译成.dex文件,然后Dalvik虚拟机则运行该dex文件</li>
-<li>JVM基于栈的,Dalvik虚拟机基于寄存器.基于寄存器的虚拟机具有更好的性能表现,但在硬件通用性上略差</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Android系统主要由5部分组成&quot;&gt;&lt;a href=&quot;#Android系统主要由5部分组成&quot; class=&quot;headerlink&quot; title=&quot;Android系统主要由5部分组成&quot;&gt;&lt;/a&gt;Android系统主要由5部分组成&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;应用程序
-    
-    </summary>
-    
-      <category term="Android" scheme="http://delavior.net/categories/Android/"/>
-    
-    
-      <category term="android" scheme="http://delavior.net/tags/android/"/>
     
   </entry>
   

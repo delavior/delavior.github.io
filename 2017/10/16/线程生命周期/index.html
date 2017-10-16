@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="thread," />
 
 
 
@@ -86,15 +86,17 @@
 
 
 
-<meta name="description" content="Write Something when I&apos;m on the way to be a real programmer.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="On The Way">
-<meta property="og:url" content="http://delavior.net/categories/Tomcat/index.html">
+<meta name="description" content="线程生命周期有新建(New)、就绪(Runnable)、运行(Running)、阻塞(Blocked)、死亡(Dead)5种状态。  新建状态，当程序使用new创建了一个线程之后，该线程处于创建状态，此时仅由JVM为其分配内存，并初始化其成员变量的值。 就绪状态，当线程对象调用了start()方法之后，该线程处于就绪状态。Java虚拟机会为其创建方法调用栈和程序计数器，等待调度运行。 运行状态，如">
+<meta name="keywords" content="thread">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线程生命周期">
+<meta property="og:url" content="http://delavior.net/2017/10/16/线程生命周期/index.html">
 <meta property="og:site_name" content="On The Way">
-<meta property="og:description" content="Write Something when I&apos;m on the way to be a real programmer.">
+<meta property="og:description" content="线程生命周期有新建(New)、就绪(Runnable)、运行(Running)、阻塞(Blocked)、死亡(Dead)5种状态。  新建状态，当程序使用new创建了一个线程之后，该线程处于创建状态，此时仅由JVM为其分配内存，并初始化其成员变量的值。 就绪状态，当线程对象调用了start()方法之后，该线程处于就绪状态。Java虚拟机会为其创建方法调用栈和程序计数器，等待调度运行。 运行状态，如">
+<meta property="og:updated_time" content="2017-10-16T02:31:45.115Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="On The Way">
-<meta name="twitter:description" content="Write Something when I&apos;m on the way to be a real programmer.">
+<meta name="twitter:title" content="线程生命周期">
+<meta name="twitter:description" content="线程生命周期有新建(New)、就绪(Runnable)、运行(Running)、阻塞(Blocked)、死亡(Dead)5种状态。  新建状态，当程序使用new创建了一个线程之后，该线程处于创建状态，此时仅由JVM为其分配内存，并初始化其成员变量的值。 就绪状态，当线程对象调用了start()方法之后，该线程处于就绪状态。Java虚拟机会为其创建方法调用栈和程序计数器，等待调度运行。 运行状态，如">
 
 
 
@@ -115,10 +117,10 @@
 
 
 
-  <link rel="canonical" href="http://delavior.net/categories/Tomcat/"/>
+  <link rel="canonical" href="http://delavior.net/2017/10/16/线程生命周期/"/>
 
 
-  <title> 分类: Tomcat | On The Way </title>
+  <title> 线程生命周期 | On The Way </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans,en,default">
@@ -148,7 +150,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -276,47 +278,186 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Tomcat
-        <small>分类</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                线程生命周期
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-16T10:30:45+08:00" content="2017-10-16">
+              2017-10-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/10/16/线程生命周期/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/10/16/线程生命周期/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+      
+        <p>线程生命周期有新建(New)、就绪(Runnable)、运行(Running)、阻塞(Blocked)、死亡(Dead)5种状态。</p>
+<ol>
+<li>新建状态，当程序使用new创建了一个线程之后，该线程处于创建状态，此时仅由JVM为其分配内存，并初始化其成员变量的值。</li>
+<li>就绪状态，当线程对象调用了start()方法之后，该线程处于就绪状态。Java虚拟机会为其创建方法调用栈和程序计数器，等待调度运行。</li>
+<li>运行状态，如果处于就绪状态的线程获得了CPU，开始执行run()方法的线程执行体，则该线程处于运行状态。</li>
+<li>阻塞状态，当处于运行状态的线程失去所占用资源之后，便进入阻塞状态。</li>
+<li>死亡状态，当线程的run()方法或call()方法执行完毕，或抛出一个未获取的异常时线程进入死亡状态</li>
+</ol>
+<p>线程调度策略：</p>
+<ul>
+<li>抢占式调度策略(现代桌面和服务器操作系统)：系统会给每个可执行的线程一个小时间段来处理任务，当该时间段用完后系统就会剥夺该线程占用的资源，让其他线程获得执行的机会。在选择下一个线程时，操作系统会考虑线程的优先级。</li>
+<li>协作式调度策略(小型设备)：只有当一个线程调用了sleep()或yield()方法才会放弃所占用的资源，也就是必须由线程主动放弃所占用的资源。</li>
+</ul>
+<p>当发生如下情况时，线程会进入阻塞状态：</p>
+<ul>
+<li>线程调用sleep()方法主动放弃所占用的CPU资源</li>
+<li>线程调用了一个阻塞式IO方法，在该方法返回前，线程被阻塞</li>
+<li>线程试图获得一个锁，但该锁正被其它线程所持有。</li>
+<li>线程在等待某个通知notify。</li>
+<li>程序调用了线程的suspend()方法将该线程挂起。但该方法容易导致死锁，不推荐使用。</li>
+</ul>
+<p>线程结束：</p>
+<ul>
+<li>run()或call()方法执行完成，线程正常结束。</li>
+<li>线程抛出一个未捕获的Exception或Error</li>
+<li>直接调用线程stop()方法来结束该线程——该方法容易导致死锁，不推荐使用</li>
+</ul>
+<p>当线程结束后，不能再调用start()方法使其重新启动(IllegalThreadStateException)。</p>
+<p>当主线程结束后，其他线程不会随之结束。可以调用线程的isAlive()方法判断线程是否死亡，当线程处于就绪、运行、阻塞状态时该方法返回true。</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2015/04/04/Tomcat-IO/" itemprop="url">
-              
-                <span itemprop="name">Tomcat IO</span>
-              
-            </a>
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wxqrcode.png" alt="delavior wechat" style="width: 200px; max-width: 100%;"/>
+    <div>摇一摇</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-04-04T22:08:27+08:00"
-              content="2015-04-04" >
-          04-04
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/thread/" rel="tag">#thread</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/13/httpclient使用/" rel="next" title="httpclient使用">
+                <i class="fa fa-chevron-left"></i> httpclient使用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </section>
 
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -324,6 +465,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -343,8 +495,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -439,6 +600,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -551,6 +723,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
@@ -567,9 +743,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'delavior';
-      var disqus_identifier = 'categories/Tomcat/index.html';
-      var disqus_title = "";
-      var disqus_url = '';
+      var disqus_identifier = '2017/10/16/线程生命周期/';
+      var disqus_title = "线程生命周期";
+      var disqus_url = 'http://delavior.net/2017/10/16/线程生命周期/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -580,6 +756,13 @@
       }
 
       run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
       
     </script>
   
